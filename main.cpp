@@ -1,8 +1,7 @@
 #include <iostream>
 #include "Session.h"
 #include <fstream>
-#include "json.hpp"
-using json=nlohmann::json;
+
 using namespace std;
 
 int main(int argc, char** argv){
@@ -12,10 +11,7 @@ int main(int argc, char** argv){
         return 0;
     }*/
 //    Session sess(argv[1]);    argv1 will be json input file path
-      ifstream input("config1.json");
-      json j;
-      input>>j;
-      //Session sess();
+      Session sess("config1.json");
 //    sess.simulate();
     return 0;
 }
