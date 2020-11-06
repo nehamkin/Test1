@@ -4,7 +4,7 @@
 using namespace std;
 
 int main(int argc, char** argv){
-    cout<<"Testing"<<endl;
+    cout<<"Testing123"<<endl;
     if(argc != 2){
         cout << "usage cTrace <config_path>" << endl;
         return 0;
