@@ -11,4 +11,4 @@ add_executable(Test1
         json.hpp
         main.cpp
         Session.h
-        Tree.h)
+        Tree.h Session.cpp)
