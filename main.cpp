@@ -14,7 +14,7 @@ int main(int argc, char** argv){
    Session sess(argv[1]);
     sess.printType();
     sess.printAgents();
-    sess.printGraph();
+    //sess.printGraph();
 //    sess.simulate();
 
 

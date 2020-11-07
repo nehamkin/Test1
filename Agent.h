@@ -14,7 +14,7 @@ public:
 class ContactTracer: public Agent{
 public:
     ContactTracer();
-    
+    string mytype();
 //    virtual void act(Session& session);
 };
 
@@ -22,7 +22,7 @@ public:
 class Virus: public Agent{
 public:
     Virus(int nodeInd);
-    
+    string mytype();
 //    virtual void act(Session& session);
 private:
     const int nodeInd;
