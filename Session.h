@@ -3,10 +3,12 @@
 #include <vector>
 #include <string>
 #include "Graph.h"
-#include "json.hpp"
+
 #include <fstream>
 #include <iostream>
+#include "json.hpp"
 using json=nlohmann::json;
+
 using namespace std;
 
 class Agent;

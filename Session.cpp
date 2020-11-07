@@ -1,8 +1,9 @@
 //
 // Created by spl211 on 06/11/2020.
 //
+
 #include "Session.h"
- Session::Session(const std::string &path):g(),treeType(),agents() {
+Session::Session(const std::string &path) {
      ifstream i(path);
      json j;
      j << i;
@@ -14,7 +15,7 @@
          treeType=Root;
      else
          treeType=Cycle;
-//     ----end Tree Type ----
+//    ----end Tree Type ----
 
 }
 
