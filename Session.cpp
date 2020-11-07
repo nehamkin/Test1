@@ -29,6 +29,15 @@ Session::Session(const std::string &path) {
             agents.push_back(new ContactTracer);
     }
 }
-void Session::printGraph() { cout<< g.edges << endl;}
+
+
+
+void Session::printGraph() {
+    const vector<vector<int>> matrix= g.getEdges();
+    for(int i=0;i<matrix.size();i++){
+        cout<<""<<endl;
+        for(int j=0;j<matrix.size();j++)
+            cout<<matrix[i][j]<<ends;}
+}
 void Session::printAgents() {cout<<"agents"<<endl; for(auto elem:agents){cout<< typeid(elem).name() <<endl;}}
 void Session::printType() {cout<< treeType << endl;}
