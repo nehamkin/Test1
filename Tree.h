@@ -8,14 +8,14 @@ class Session;
 class Tree{
 public:
     Tree(int rootLabel);
-    void addChild(const Tree& child);
-
-
+    Tree(const Tree& other);
+//    ~Tree();
+//    void addChild(const Tree& child);
     static Tree* createTree(const Session& session, int rootLabel);
     virtual int traceTree()=0;
 private:
     int node;
-    std::vector<Tree*> children;
+    std::vector<Tree*> children; //vectors are allocated on the heap
 };
 
 class CycleTree: public Tree{

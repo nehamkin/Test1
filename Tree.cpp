@@ -3,4 +3,14 @@
 //
 
 #include "Tree.h"
+using namespace std;
 
+Tree::Tree(int rootLabel): node(rootLabel), children(){}
+//Tree:: ~Tree() {if(children) delete children;}
+//Tree:: Tree(const Tree& other){
+//    node=other.node;
+//    children=other.children;
+//}
+CycleTree::CycleTree(int rootLabel, int currCycle) :Tree(rootLabel),currCycle(currCycle){}
+MaxRankTree::MaxRankTree(int rootLabel):Tree(rootLabel) {}
+RootTree::RootTree(int rootLabel) :Tree(rootLabel){}
