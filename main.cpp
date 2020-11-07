@@ -7,13 +7,17 @@
 
 int main(int argc, char** argv){
 
-    /*if(argc != 2){
+    if(argc != 2){
         cout << "usage cTrace <config_path>" << endl;
         return 0;
-    }*/
+    }
 //    Session sess(argv[1]);    argv1 will be json input file path
 //      Session sess("config1.json");
 //    sess.simulate();
+    ifstream i(argv[1]);
+    json j2;
+    j2<<i;
+    cout<<j2<<endl;
     ifstream input("/home/spl211/Desktop/Test1/config1.json");
     json j;
     j << input;
