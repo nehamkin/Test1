@@ -12,7 +12,7 @@ public:
 //    ~Tree();
 //    void addChild(const Tree& child);
     static Tree* createTree(const Session& session, int rootLabel);
-    virtual int traceTree()=0;
+//    virtual int traceTree()=0;
 private:
     int node;
     std::vector<Tree*> children; //vectors are allocated on the heap
@@ -21,7 +21,7 @@ private:
 class CycleTree: public Tree{
 public:
     CycleTree(int rootLabel, int currCycle);
-    virtual int traceTree();
+//    virtual int traceTree();
 private:
     int currCycle;
 };
@@ -29,13 +29,13 @@ private:
 class MaxRankTree: public Tree{
 public:
     MaxRankTree(int rootLabel);
-    virtual int traceTree();
+//    virtual int traceTree();
 };
 
 class RootTree: public Tree{
 public:
     RootTree(int rootLabel);
-    virtual int traceTree();
+//    virtual int traceTree();
 };
 
 #endif
