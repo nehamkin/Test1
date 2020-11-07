@@ -7,7 +7,7 @@
 class Agent{
 public:
     Agent();
-    
+//    virtual Agent* clone()=0;
     virtual void act(Session& session)=0;
 };
 
