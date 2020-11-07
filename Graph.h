@@ -10,8 +10,9 @@ public:
     void infectNode(int nodeInd);
     bool isInfected(int nodeInd);
     // no need for a destructor and operator= because it will be saved on the stack
-private:
+//private:
     std::vector<std::vector<int>> edges;
+private:
 };
 
 #endif

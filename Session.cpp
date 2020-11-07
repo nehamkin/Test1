@@ -3,6 +3,7 @@
 //
 
 #include "Session.h"
+#include "Agent.h"
 
 Session::Session(const std::string &path) {
     ifstream i(path);
@@ -16,4 +17,18 @@ Session::Session(const std::string &path) {
         treeType = Root;
     else
         treeType = Cycle;
+//    ---- Graph g ----
+    vector<vector<int>> matrix = j["graph"];
+    Graph graph(matrix);
+    g=graph;
+//    ----Agents----
+    for(auto& elem: j["agents"]){
+        if(elem[0]=="V")
+            agents.push_back(new Virus(elem[1]));
+        else
+            agents.push_back(new ContactTracer);
+    }
 }
+void Session::printGraph() { cout<< g.edges << endl;}
+void Session::printAgents() {cout<<"agents"<<endl; for(auto elem:agents){cout<< typeid(elem).name() <<endl;}}
+void Session::printType() {cout<< treeType << endl;}

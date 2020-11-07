@@ -11,13 +11,12 @@ int main(int argc, char** argv){
         cout << "usage cTrace <config_path>" << endl;
         return 0;
     }
-  // Session sess(argv[1]);
-//      Session sess("config1.json");
+   Session sess(argv[1]);
+    sess.printType();
+    sess.printAgents();
+    sess.printGraph();
 //    sess.simulate();
-    ifstream i(argv[1]);
-    json j2;
-    j2<<i;
-    cout<<j2["tree"]<<endl;
+
 
     return 0;
 }
