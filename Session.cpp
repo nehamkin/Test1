@@ -2,14 +2,15 @@
 // Created by spl211 on 06/11/2020.
 //
 #include "Session.h"
- Session::Session(const std::string &path) {
+ Session::Session(const std::string &path):g(),treeType(),agents() {
      ifstream i(path);
      json j;
      j << i;
      //----Tree Type----
-     if(j["tree"]=="M")
+     string type=j["tree"];
+     if(type=="M")
          treeType=MaxRank;
-     else if(j["tree"]=="R")
+     else if(type=="R")
          treeType=Root;
      else
          treeType=Cycle;

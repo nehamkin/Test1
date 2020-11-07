@@ -4,4 +4,6 @@
 
 #include "Agent.h"
 
+Agent::Agent() {}
+ContactTracer::ContactTracer() {}
 Virus::Virus(int nodeInd): nodeInd(nodeInd) {}
