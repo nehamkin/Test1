@@ -5,6 +5,4 @@
 #include "Graph.h"
 
 Graph::Graph(std::vector<std::vector<int>> matrix): edges(matrix) {}
-//Graph::Graph(){
-//    edges=[[-1,-1]];
-//}
+Graph::Graph(): edges({{0,0}}) {};
