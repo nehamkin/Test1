@@ -7,9 +7,9 @@
      json j;
      j << i;
      //----Tree Type----
-     if(j["tree"]=='M')
+     if(j["tree"]=="M")
          treeType=MaxRank;
-     else if(j["tree"]=='R')
+     else if(j["tree"]=="R")
          treeType=Root;
      else
          treeType=Cycle;
