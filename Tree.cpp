@@ -22,8 +22,6 @@ CycleTree::CycleTree(int rootLabel, int currCycle) :Tree(rootLabel),currCycle(cu
 MaxRankTree::MaxRankTree(int rootLabel):Tree(rootLabel) {}
 RootTree::RootTree(int rootLabel) :Tree(rootLabel){}
 
-void Tree::addChild(const Tree &child) {children.push_back(new Tree(child));}
-
 Tree* Tree::createTree(const Session &session, int rootLabel) {}
 
 int Tree::traceTree() {return 0;}
