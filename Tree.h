@@ -14,7 +14,7 @@ public:
     static Tree* createTree(const Session& session, int rootLabel);
     virtual int traceTree()=0;
     int getNode() const{return node;}
-    vector<Tree*> getChildren() const {return children }
+    vector<Tree*> getChildren() const {return children;}
     virtual Tree* clone() const=0;
 private:
     int node;

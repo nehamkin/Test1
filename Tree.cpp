@@ -34,7 +34,7 @@ Tree* BFS(int root,Session session) {
     for (int i = 0; i < numOfV; i++)
         isVisited[i] = false;
     vector<int> myqueue;
-    myqueue.push_back((*tree).Getnode());
+    myqueue.push_back((*tree).getNode());
     isVisited[root] = true;
     while (myqueue.size()!=0) {
         int node = myqueue.at(0);
