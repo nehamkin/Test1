@@ -14,29 +14,34 @@ Tree:: ~Tree(){
         for(Tree* tree:children)
             delete tree;
 }
-//Tree:: ~Tree() {if(children) delete children;}
-//Tree:: Tree(const Tree& other){
-//    node=other.node;
-//    children=other.children;
-//}
+//----------------constructors----------------------
 CycleTree::CycleTree(int rootLabel, int currCycle) :Tree(rootLabel),currCycle(currCycle){}
 MaxRankTree::MaxRankTree(int rootLabel):Tree(rootLabel) {}
 RootTree::RootTree(int rootLabel) :Tree(rootLabel){}
 
-void Tree::addChild(const Tree &child) {children.push_back(new Tree(child));}
-
-Tree* Tree::createTree(const Session &session, int rootLabel) {
-    Tree* tree=new Tree(rootLabel);
-    int numOfV=session.getGraph().numberOfVertices();
-    bool* isVisited= new bool[numOfV];
-    for(int i=0; i<numOfV;i++)
-        isVisited[i]=false;
-    vector<int> myqueue ;
-    myqueue.push_back(rootLabel);
-    isVisited[rootLabel] = tree;
-    for(int node = 0; myqueue.size()!=0;){
-
-    }
+//----------------clones for add child -------------
+Tree* CycleTree::clone() const{
+    Tree* pclone = new CycleTree(*this);
+    return pclone;
 }
 
-int CycleTree
+Tree* MaxRankTree::clone() const {
+    Tree* pclone = new MaxRankTree(*this);
+    return pclone;
+}
+
+Tree* RootTree:: clone() const{
+    Tree* pclone = new RootTree(*this);
+    return pclone;
+}
+//---------------------------------------------------
+void Tree::addChild(const Tree &child) {
+    Tree* toAdd = child.clone();
+    children.push_back(toAdd);
+}
+
+
+
+
+
+
