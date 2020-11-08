@@ -9,6 +9,7 @@ public:
     Agent();
 //    virtual Agent* clone()=0;
 //    virtual void act(Session& session)=0;
+      virtual string mytype();
 };
 
 class ContactTracer: public Agent{

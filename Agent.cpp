@@ -5,6 +5,7 @@
 #include "Agent.h"
 
 Agent::Agent() {}
+string Agent::mytype() {return "agent";}
 ContactTracer::ContactTracer() {}
 string ContactTracer:: mytype(){return "Contacttracer :D"; }
 

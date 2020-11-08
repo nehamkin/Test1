@@ -39,5 +39,5 @@ void Session::printGraph() {
         for(int j=0;j<matrix.size();j++)
             cout<<matrix[i][j]<<ends;}
 }
-void Session::printAgents() {cout<<"agents"<<endl; for(auto elem:agents){cout<< typeid(elem).name() <<endl;}}
-void Session::printType() {cout<< treeType << endl;}
+void Session::printAgents() {int i = 1 ; for(auto elem:agents){cout<<"agent number "<<i <<" is a "<<  elem->mytype() <<endl;i++;}}
+void Session::printType() {if (treeType == MaxRank) cout<<"Max rank tree"<<endl; else if (treeType == Cycle) cout<<"Cycle tree"<<endl; else cout<<"root tree"<<endl ;}
