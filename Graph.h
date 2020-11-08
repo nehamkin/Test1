@@ -9,11 +9,11 @@ public:
     Graph();
     void infectNode(int nodeInd);
     bool isInfected(int nodeInd);
-    vector<vector<int>> getEdges() const;
+    vector<vector<int>>& getEdges() const;
+    int numberOfVertices();
     // no need for a destructor and operator= because it will be saved on the stack
 private:
     std::vector<std::vector<int>> edges;
-
 };
 
 #endif

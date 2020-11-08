@@ -28,7 +28,7 @@ public:
     void printGraph();
     void printAgents();
     void printType();
-    
+    Graph& getGraph()const;
     void enqueueInfected(int);
     int dequeueInfected();
     TreeType getTreeType() const;

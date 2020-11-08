@@ -9,7 +9,7 @@ class Tree{
 public:
     Tree(int rootLabel);
     Tree(const Tree& other);
-//    ~Tree();
+    virtual ~Tree();
     void addChild(const Tree& child);
     static Tree* createTree(const Session& session, int rootLabel);
 //    virtual int traceTree()=0;
