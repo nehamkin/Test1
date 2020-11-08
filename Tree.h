@@ -13,6 +13,7 @@ public:
     void addChild(const Tree& child);
     static Tree* createTree(const Session& session, int rootLabel);
     virtual int traceTree()=0;
+    int Getnode(){return node;}
 protected:
     int node;
     std::vector<Tree*> children; //vectors are allocated on the heap
