@@ -6,6 +6,7 @@
 using namespace std;
 
 Tree::Tree(int rootLabel): node(rootLabel), children(){}
+Tree::Tree(const Tree& tree):children(tree.children),node(tree.node){}
 //Tree:: ~Tree() {if(children) delete children;}
 //Tree:: Tree(const Tree& other){
 //    node=other.node;
