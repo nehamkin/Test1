@@ -22,7 +22,24 @@ CycleTree::CycleTree(int rootLabel, int currCycle) :Tree(rootLabel),currCycle(cu
 MaxRankTree::MaxRankTree(int rootLabel):Tree(rootLabel) {}
 RootTree::RootTree(int rootLabel) :Tree(rootLabel){}
 
-Tree* Tree::createTree(const Session &session, int rootLabel) {}
+Tree* Tree::createTree(const Session &session, int rootLabel) {
+    Tree* tree;
+    switch(session.getTreeType()){
+        case Cycle:
+            tree = new CycleTree(rootLabel,session.getCycle());
+            break;
+
+        case MaxRank:
+            tree = new MaxRankTree(rootLabel);
+            break;
+
+        case Root:
+            tree= new RootTree(rootLabel);
+            break;
+    }
+    return tree;
+
+}
 
 //int Tree::traceTree() {return 0;}
 

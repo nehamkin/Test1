@@ -33,10 +33,13 @@ public:
     void printAgents();
     void printType();
     Graph getGraph()const;
+    int getCycle() const;
+
 private:
     Graph g;
     TreeType treeType;
     std::vector<Agent*> agents;
+    int Cycle;
 };
 
 #endif
