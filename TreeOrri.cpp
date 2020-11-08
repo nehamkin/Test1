@@ -19,26 +19,6 @@ CycleTree::CycleTree(int rootLabel, int currCycle) :Tree(rootLabel),currCycle(cu
 MaxRankTree::MaxRankTree(int rootLabel):Tree(rootLabel) {}
 RootTree::RootTree(int rootLabel) :Tree(rootLabel){}
 
-//----------------clones for add child -------------
-Tree* CycleTree::clone() const{
-    Tree* pclone = new CycleTree(*this);
-    return pclone;
-}
-
-Tree* MaxRankTree::clone() const {
-    Tree* pclone = new MaxRankTree(*this);
-    return pclone;
-}
-
-Tree* RootTree:: clone() const{
-    Tree* pclone = new RootTree(*this);
-    return pclone;
-}
-//---------------------------------------------------
-void Tree::addChild(const Tree &child) {
-    Tree* toAdd = child.clone();
-    children.push_back(toAdd);
-}
 
 
 

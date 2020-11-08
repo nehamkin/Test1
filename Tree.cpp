@@ -53,3 +53,24 @@ Tree* BFS(int root,Session session) {
     }
     return tree;
 }
+
+//----------------clones for add child -------------
+Tree* CycleTree::clone() const{
+    Tree* pclone = new CycleTree(*this);
+    return pclone;
+}
+
+Tree* MaxRankTree::clone() const {
+    Tree* pclone = new MaxRankTree(*this);
+    return pclone;
+}
+
+Tree* RootTree:: clone() const{
+    Tree* pclone = new RootTree(*this);
+    return pclone;
+}
+//---------------------------------------------------
+void Tree::addChild(const Tree &child) {
+    Tree* toAdd = child.clone();
+    children.push_back(toAdd);
+}
