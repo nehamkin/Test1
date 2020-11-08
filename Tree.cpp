@@ -33,8 +33,10 @@ Tree* Tree::createTree(const Session &session, int rootLabel) {
     vector<int> myqueue ;
     myqueue.push_back(rootLabel);
     isVisited[rootLabel] = tree;
-    for(int node = 0; myqueue.size()!=0;){
-
+    for(int node ; !myqueue.empty();){
+        int index = 0;
+        node = myqueue.at(0);
+        myqueue.erase(myqueue.begin());
     }
 
 }
