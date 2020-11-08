@@ -32,7 +32,7 @@ Session::Session(const std::string &path) {
 
 Graph Session::getGraph() const {return g;}
 TreeType Session::getTreeType() const {return treeType;}
-int Session::getCycle() const {return Cycle;}
+int Session::getCycle() const {return cycleNum;}
 
 void Session::printGraph() {
     const vector<vector<int>> matrix= g.getEdges();
