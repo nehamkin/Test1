@@ -30,6 +30,11 @@ Tree* Tree::createTree(const Session &session, int rootLabel) {
     bool* isVisited= new bool[numOfV];
     for(int i=0; i<numOfV;i++)
         isVisited[i]=false;
-    vector<>
+    vector<int> myqueue ;
+    myqueue.push_back(rootLabel);
+    isVisited[rootLabel] = tree;
+    for(int node = 0; myqueue.size()!=0;){
+
+    }
 
 }
