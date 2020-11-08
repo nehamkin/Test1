@@ -38,9 +38,18 @@ Tree* BFS(int root,Session session) {
     vector<int> myqueue;
     myqueue.push_back((*tree).Getnode());
     isVisited[root] = true;
-    while (myqueue.size()!=0)
+    while (myqueue.size()!=0) {
         int node = myqueue.at(0);
         myqueue.erase(myqueue.begin());
-        for(int neighbor : session.getGraph()[])
-
+        isVisited[node] = true;
+        vector<int> neighbors = session.getGraph().getEdges()[node];
+        for (int neighbor=0 ;neighbor<= numOfV; neighbor++){
+            if (neighbors.at(neighbor)==1 & !isVisited[neighbor]){
+                Tree* curr = Tree::createTree(session,neighbor);
+                tree->addChild(*curr);
+                myqueue.push_back(neighbor);
+            }
+        }
+    }
+    return tree;
 }
