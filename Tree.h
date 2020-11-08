@@ -10,7 +10,7 @@ public:
     Tree(int rootLabel);
     Tree(const Tree& other);
 //    ~Tree();
-//    void addChild(const Tree& child);
+    void addChild(const Tree& child);
     static Tree* createTree(const Session& session, int rootLabel);
 //    virtual int traceTree()=0;
 private:

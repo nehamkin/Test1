@@ -14,3 +14,5 @@ Tree::Tree(int rootLabel): node(rootLabel), children(){}
 CycleTree::CycleTree(int rootLabel, int currCycle) :Tree(rootLabel),currCycle(currCycle){}
 MaxRankTree::MaxRankTree(int rootLabel):Tree(rootLabel) {}
 RootTree::RootTree(int rootLabel) :Tree(rootLabel){}
+
+void Tree::addChild(const Tree &child) {this->children.push_back(&child);}
