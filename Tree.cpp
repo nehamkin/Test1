@@ -24,7 +24,7 @@ RootTree::RootTree(int rootLabel) :Tree(rootLabel){}
 
 Tree* Tree::createTree(const Session &session, int rootLabel) {}
 
-int Tree::traceTree() {return 0;}
+//int Tree::traceTree() {return 0;}
 
 
 Tree* BFS(int root,Session session) {

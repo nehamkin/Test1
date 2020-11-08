@@ -12,7 +12,7 @@ public:
     virtual ~Tree();
     void addChild(const Tree& child);
     static Tree* createTree(const Session& session, int rootLabel);
-    virtual int traceTree()=0;
+//    virtual int traceTree()=0;
     int getNode() const{return node;}
     vector<Tree*> getChildren() const {return children;}
     virtual Tree* clone() const=0;
@@ -24,7 +24,7 @@ private:
 class CycleTree: public Tree{
 public:
     CycleTree(int rootLabel, int currCycle);
-    virtual int traceTree();
+//    virtual int traceTree();
     virtual Tree* clone() const;
 private:
     int currCycle;
@@ -33,14 +33,14 @@ private:
 class MaxRankTree: public Tree{
 public:
     MaxRankTree(int rootLabel);
-    virtual int traceTree();
+//    virtual int traceTree();
     virtual Tree* clone() const;
 };
 
 class RootTree: public Tree{
 public:
     RootTree(int rootLabel);
-    virtual int traceTree();
+//    virtual int traceTree();
     virtual Tree* clone() const;
 };
 

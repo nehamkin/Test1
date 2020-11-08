@@ -30,7 +30,7 @@ Session::Session(const std::string &path) {
     }
 }
 
-Graph& Session::getGraph() const {return g;}
+Graph Session::getGraph() const {return g;}
 
 
 void Session::printGraph() {

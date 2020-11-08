@@ -32,7 +32,7 @@ public:
     void printGraph();
     void printAgents();
     void printType();
-    Graph& getGraph()const;
+    Graph getGraph()const;
 private:
     Graph g;
     TreeType treeType;
