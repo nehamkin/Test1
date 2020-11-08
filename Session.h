@@ -25,14 +25,14 @@ public:
     void simulate();
     void addAgent(const Agent& agent);
     void setGraph(const Graph& graph);
+    void enqueueInfected(int);
+    int dequeueInfected();
+
+    TreeType getTreeType() const;
     void printGraph();
     void printAgents();
     void printType();
     Graph& getGraph()const;
-    void enqueueInfected(int);
-    int dequeueInfected();
-    TreeType getTreeType() const;
-    
 private:
     Graph g;
     TreeType treeType;

@@ -25,9 +25,6 @@ RootTree::RootTree(int rootLabel) :Tree(rootLabel){}
 void Tree::addChild(const Tree &child) {children.push_back(new Tree(child));}
 
 Tree* Tree::createTree(const Session &session, int rootLabel) {
-
-}
-Tree* BFS(int rootLabel, Session session){
     Tree* tree=new Tree(rootLabel);
     int numOfV=session.getGraph().numberOfVertices();
     bool* isVisited= new bool[numOfV];
@@ -36,9 +33,8 @@ Tree* BFS(int rootLabel, Session session){
     vector<int> myqueue ;
     myqueue.push_back(rootLabel);
     isVisited[rootLabel] = tree;
-    for(int node ; !myqueue.empty();){
-        int index = 0;
-        node = myqueue.at(0);
-        myqueue.erase(myqueue.begin());
+    for(int node = 0; myqueue.size()!=0;){
+
     }
+
 }
