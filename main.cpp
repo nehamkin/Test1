@@ -46,7 +46,8 @@ int main(int argc, char** argv){
 
    Session sess(argv[1]);
    Tree* tree= BFS(0, sess);
-
+    tree->printTree();
+    cout<<"the max tree is:"<<tree->traceTree()<<endl;
 
 
 //    sess.simulate();

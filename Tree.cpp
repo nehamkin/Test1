@@ -4,6 +4,7 @@
 #include "Graph.h"
 #include "Tree.h"
 #include "Session.h"
+#include <queue>
 using namespace std;
 
 Tree::Tree(int rootLabel): node(rootLabel), children(){}
@@ -116,3 +117,25 @@ void Tree::addChild(const Tree &child) {
 void Tree::addChild(Tree *child) {
     children.push_back(child);
 }
+
+int MaxRankTree::traceTree() {
+    int output = getNode();
+    int max = getChildren().size();
+    Tree* t;
+    queue<Tree*> q;
+    q.push(this);
+    while(!q.empty()){
+        t=q.front();
+        q.pop();
+        if(t->getChildren().size()>max){
+            max=t->getChildren().size();
+            output=t->getNode();
+        }
+        for(int i=0; i<t->getChildren().size();i++){
+            q.push(t->getChildren()[i]);
+        }
+    }
+    return output;
+}
+int CycleTree::traceTree() {return 0;}
+int RootTree::traceTree() {return 0;}
