@@ -28,16 +28,27 @@ Tree* BFS(int root,Session session) {
     }
     return tree;
 }
+//--------------------------------------------------------
 
+//------------------------------------------------------
 int main(int argc, char** argv){
 
     if(argc != 2){
         cout << "usage cTrace <config_path>" << endl;
         return 0;
     }
+    MaxRankTree *t0=new MaxRankTree(0);
+    MaxRankTree *t1=new MaxRankTree(1);
+    MaxRankTree *t2=new MaxRankTree(2);
+    MaxRankTree *t3=new MaxRankTree(3);
+    MaxRankTree *t4=new MaxRankTree(4);
+    MaxRankTree *t5=new MaxRankTree(5);
+    MaxRankTree *t6=new MaxRankTree(6);
+
+
    Session sess(argv[1]);
     Tree* tree= BFS(0, sess);
-    printTree(tree);
+    tree->printTree();
     sess.printType();
     sess.printAgents();
     sess.printGraph();

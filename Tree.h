@@ -16,6 +16,8 @@ public:
     int getNode() const{return node;}
     vector<Tree*> getChildren() const {return children;}
     virtual Tree* clone() const=0;
+    void printTree();
+    void printLevel(int level);
 private:
     int node;
     std::vector<Tree*> children; //vectors are allocated on the heap

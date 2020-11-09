@@ -41,6 +41,27 @@ Tree* Tree::createTree(const Session &session, int rootLabel) {
 
 }
 
+void Tree::printLevel( int level){
+    if(level == 0){
+        cout<<getNode()<<ends;
+        return;
+    }
+    if(getChildren().empty())
+        return;
+    if(level>0){
+        for(int i=0;i<getChildren().size();i++){
+            getChildren()[i]->printLevel(level-1);
+        }
+    }
+}
+
+void Tree:: printTree(){
+    for(int i=0;i<15;i++){
+        printLevel(i);
+        cout<<""<<endl;
+    }
+}
+
 //int Tree::traceTree() {return 0;}
 
 
