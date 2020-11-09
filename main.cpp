@@ -45,13 +45,13 @@ int main(int argc, char** argv){
     MaxRankTree *t5=new MaxRankTree(5);
     MaxRankTree *t6=new MaxRankTree(6);
 
+
     t0->addChild(*t1);
     t0->addChild(*t2);
     t0->addChild(*t3);
     t2->addChild(*t4);
     t2->addChild(*t5);
     t3->addChild(*t6);
-
     t0->printTree();
 
    Session sess(argv[1]);
