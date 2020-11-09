@@ -9,6 +9,7 @@ public:
     Graph();
     void infectNode(int nodeInd);
     bool isInfected(int nodeInd);
+    void deleteEdge(int a,int b);
     vector<vector<int>> getEdges() const;
     int numberOfVertices();
     // no need for a destructor and operator= because it will be saved on the stack
