@@ -110,6 +110,7 @@ Tree* RootTree:: clone() const{
 void Tree::addChild(const Tree &child) {
     Tree* toAdd = child.clone();
     children.push_back(toAdd);
+
 }
 
 void Tree::addChild(Tree *child) {
