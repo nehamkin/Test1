@@ -45,14 +45,7 @@ int main(int argc, char** argv){
     }
 
    Session sess(argv[1]);
-   //Tree* tree= BFS(0, sess);
-   // tree->printTree();
-    //cout<<"the max tree is:"<<tree->traceTree()<<endl;
 
-    RootTree* tree = new RootTree(1);
-    RootTree* tree2 = new RootTree(2);
-    cout<<tree->traceTree()<<endl;
-    cout<<tree2->traceTree()<<endl;
 //    sess.simulate();
     return 0;
 }
