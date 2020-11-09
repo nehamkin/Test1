@@ -3,26 +3,32 @@
 #include "Session.h"
 #include "json.hpp"
 #include "Tree.h"
+#include <queue>
 
 Tree* BFS(int root,Session session) {
     Tree *tree = Tree::createTree(session, root);
     int numOfV = session.getGraph().numberOfVertices();
-    bool *isVisited = new bool[numOfV];
-    for (int i = 0; i < numOfV; i++)
-        isVisited[i] = false;
-    vector<int> myqueue;
-    myqueue.push_back((*tree).getNode());
-    isVisited[root] = true;
-    while (myqueue.size()!=0) {
-        int node = myqueue.at(0);
-        myqueue.erase(myqueue.begin());
-        isVisited[node] = true;
-        vector<int> neighbors = session.getGraph().getEdges()[node];
+    vector<bool> isVisited;
+    vector<bool> inQueue;
+    for (int i = 0; i < numOfV; i++) {
+        isVisited.push_back(false);
+        inQueue.push_back(false);
+    }
+    queue<Tree*> myQueue;
+    myQueue.push(tree);
+    isVisited.at(root) = true;
+    while (!myQueue.empty()) {
+        Tree* curr1 = myQueue.front();
+        myQueue.pop();
+        int currentNode =curr1->getNode();
+        isVisited.at(currentNode) = true;
+        vector<int> neighbors = session.getGraph().getEdges()[currentNode];
         for (int neighbor=0 ;neighbor< numOfV; neighbor++){
-            if (neighbors.at(neighbor)==1 & !isVisited[neighbor]){
-                Tree* curr = Tree::createTree(session,neighbor);
-                tree->addChild(*curr);
-                myqueue.push_back(neighbor);
+            if (neighbors.at(neighbor)==1 & !isVisited.at(neighbor) & !inQueue.at(neighbor)){
+                Tree* curr2 = Tree::createTree(session,neighbor);
+                curr1->addChild(curr2);
+                myQueue.push(curr2);
+                inQueue.at(neighbor) = true;
             }
         }
     }
@@ -37,28 +43,11 @@ int main(int argc, char** argv){
         cout << "usage cTrace <config_path>" << endl;
         return 0;
     }
-    MaxRankTree *t0=new MaxRankTree(0);
-    MaxRankTree *t1=new MaxRankTree(1);
-    MaxRankTree *t2=new MaxRankTree(2);
-    MaxRankTree *t3=new MaxRankTree(3);
-    MaxRankTree *t4=new MaxRankTree(4);
-    MaxRankTree *t5=new MaxRankTree(5);
-    MaxRankTree *t6=new MaxRankTree(6);
-
-    t0->addChild(t1);
-    t0->addChild(t2);
-    t0->addChild(t3);
-    t2->addChild(t4);
-    t2->addChild(t5);
-    t3->addChild(t6);
-    t0->printTree();
 
    Session sess(argv[1]);
-    Tree* tree= BFS(0, sess);
-    tree->printTree();
-    sess.printType();
-    sess.printAgents();
-    sess.printGraph();
+   Tree* tree= BFS(0, sess);
+
+
 
 //    sess.simulate();
     return 0;
