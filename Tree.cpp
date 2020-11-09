@@ -139,9 +139,13 @@ int MaxRankTree::traceTree() {
 }
 int CycleTree::traceTree(){
     int ans = this->getNode();
-    CycleTree* curr = this;
-    for(int counter = 0 ; counter<currCycle & curr!=0; counter++)
-        curr = dynamic_cast<CycleTree *>(this->getChildren().at(0));
+    Tree* curr = this;
+    for(int counter = 0 ; counter<currCycle & curr!=0; counter++) {
+        if (curr->getChildren().size()!= 0){
+            curr = curr->getChildren().at(0);
+            ans = curr->getNode();
+        }
+    }
     return ans;
 }
 int RootTree::traceTree() {return getNode();}
