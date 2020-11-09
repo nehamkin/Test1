@@ -16,7 +16,7 @@ Tree:: ~Tree(){
 //Tree:: ~Tree() {if(children) delete children;}
 Tree:: Tree(const Tree& other){
     node=other.node;
-    children = other.getChildren();
+    children=other.children;
 }
 
 CycleTree::CycleTree(int rootLabel, int currCycle) :Tree(rootLabel),currCycle(currCycle){}
@@ -110,4 +110,8 @@ Tree* RootTree:: clone() const{
 void Tree::addChild(const Tree &child) {
     Tree* toAdd = child.clone();
     children.push_back(toAdd);
+}
+
+void Tree::addChild(Tree *child) {
+    children.push_back(child);
 }
