@@ -3,8 +3,9 @@
 #include "Session.h"
 #include "json.hpp"
 #include "Tree.h"
+#include "Agent.h"
 #include <queue>
-
+#include "Graph.h"
 //Tree* BFS(int root,Session session) {
 //    Tree *tree = Tree::createTree(session, root);
 //    int numOfV = session.getGraph().numberOfVertices();
@@ -43,9 +44,12 @@ int main(int argc, char** argv){
         cout << "usage cTrace <config_path>" << endl;
         return 0;
     }
-
    Session sess(argv[1]);
-
+    sess.printGraph();
+    sess.enqueueInfected(0);
+    Agent* ct= new ContactTracer();
+    ct->act(sess);
+    sess.printGraph();
 //    sess.simulate();
     return 0;
 }

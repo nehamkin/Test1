@@ -30,8 +30,8 @@ Session::Session(const std::string &path) {
     }
     int numOfV = g.numberOfVertices();
     for (int i = 0; i < numOfV; i++) {
-        red[i] = false;
-        yellow[i] = false;
+        red.at(i) = false;
+        yellow.at(i) = false;
     }
     agentSize=agents.size();
 }
