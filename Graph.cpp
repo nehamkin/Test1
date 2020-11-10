@@ -11,3 +11,11 @@ int Graph::numberOfVertices() {return edges.size();}
 void Graph::deleteEdge(int a, int b) {
     edges[a][b]=edges[b][a]=0;
 }
+vector<int> Graph::getNeighborsOf(int vertex) {
+    vector<int> neighbors;
+    for(int i=0;i<edges.size();i++){
+        if(edges[vertex][i]==1)
+            neighbors.push_back(i);
+    }
+    return neighbors;
+}
