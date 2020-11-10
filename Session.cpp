@@ -56,7 +56,8 @@ int Session::dequeueInfected() {
 }
 //-----------------------------------------------------
 void Session::addAgent(const Agent &agent) {
-
+    Agent *ag= agent.clone();
+    agents.push_back(ag);
 }
 
 void Session::detachVertex(int v) {

@@ -41,6 +41,7 @@ public:
     void setRed(int toChange);
     void setYellow(int toChange);
     bool isInfectedQempty();
+
 private:
     Graph g;
     TreeType treeType;

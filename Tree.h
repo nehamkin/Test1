@@ -19,7 +19,7 @@ public:
     virtual Tree* clone() const=0;
     void printTree();
     void printLevel(int level);
-//    Tree getMaxChild();
+
 private:
     int node;
     std::vector<Tree*> children; //vectors are allocated on the heap
