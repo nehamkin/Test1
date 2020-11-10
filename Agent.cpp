@@ -16,4 +16,5 @@ string ContactTracer:: mytype(){return "Contacttracer :D"; }
 
 Virus::Virus(int nodeInd): nodeInd(nodeInd) {}
 string Virus::mytype() {return "Virus :(";}
- void
+void Virus::act(Session &session) {}
+void ContactTracer::act(Session &session) {}
