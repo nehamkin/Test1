@@ -36,6 +36,11 @@ Session::Session(const std::string &path) {
     agentSize=agents.size();
 }
 
+bool Session:: isRed(int x) const {return red[x];}
+bool Session::  isYellow(int x) const {return yellow[x];}
+int Session::getAgentCounter() const {return agentCounter;}
+int Session::getAgentSize() const {return agentSize;}
+
 Graph Session::getGraph() const {return g;}
 TreeType Session::getTreeType() const {return treeType;}
 int Session::getCycle() const {return cycleNum;}

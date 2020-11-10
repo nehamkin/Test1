@@ -34,8 +34,8 @@ public:
     void printType();
     Graph getGraph()const;
     int getCycle() const;
-    vector<bool> getRed() const;
-    vector<bool> getYellow() const;
+    bool isRed(int x) const;
+    bool isYellow(int x) const;
     int getAgentCounter() const;
     int getAgentSize() const;
     void setRed(int toChange);
