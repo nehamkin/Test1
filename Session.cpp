@@ -4,7 +4,7 @@
 
 #include "Session.h"
 #include "Agent.h"
-
+//------------constructor------------------
 Session::Session(const std::string &path) {
     ifstream i(path);
     json j;
@@ -35,18 +35,29 @@ Session::Session(const std::string &path) {
     }
     agentSize=agents.size();
 }
-
-bool Session:: isRed(int x) const {return red[x];}
-bool Session:: isYellow(int x) const {return yellow[x];}
-int Session::getAgentCounter() const {return agentCounter;}
-int Session::getAgentSize() const {return agentSize;}
-void Session::setRed(int toChange) {red[toChange]=true;}
-void Session::setYellow(int toChange) {yellow[toChange]=true;}
-
+//----------------getters and setters -------------------
 Graph Session::getGraph() const {return g;}
 TreeType Session::getTreeType() const {return treeType;}
 int Session::getCycle() const {return cycleNum;}
+int Session::getAgentCounter() const {return agentCounter;}
+int Session::getAgentSize() const {return agentSize;}
+// --------------Red Yellow vector functions --------------
+bool Session:: isRed(int x) const {return red[x];}
+bool Session:: isYellow(int x) const {return yellow[x];}
+void Session::setRed(int toChange) {red[toChange]=true;}
+void Session::setYellow(int toChange) {yellow[toChange]=true;}
+//---------------NQ DQ -----------------------------------
+void Session::enqueueInfected(int x) {infectedQ.push(x);}
+int Session::dequeueInfected() {
+    int x=infectedQ.front();
+    infectedQ.pop();
+    return x;
+}
+//-----------------------------------------------------
 
+
+
+//------------------Printers------------------------------------
 void Session::printGraph() {
     const vector<vector<int>> matrix= g.getEdges();
     for(int i=0;i<matrix.size();i++){
@@ -54,5 +65,10 @@ void Session::printGraph() {
         for(int j=0;j<matrix.size();j++)
             cout<<matrix[i][j]<<ends;}
 }
-void Session::printAgents() {int i = 1 ; for(auto elem:agents){cout<<"agent number "<<i <<" is a "<<  elem->mytype() <<endl;i++;}}
+void Session::printAgents() {
+    int i = 1 ;
+    for(auto elem:agents){
+    cout<<"agent number "<<i <<" is a "<<  elem->mytype() <<endl;
+    i++;}
+}
 void Session::printType() {if (treeType == MaxRank) cout<<"Max rank tree"<<endl; else if (treeType == Cycle) cout<<"Cycle tree"<<endl; else cout<<"root tree"<<endl ;}
