@@ -37,9 +37,11 @@ Session::Session(const std::string &path) {
 }
 
 bool Session:: isRed(int x) const {return red[x];}
-bool Session::  isYellow(int x) const {return yellow[x];}
+bool Session:: isYellow(int x) const {return yellow[x];}
 int Session::getAgentCounter() const {return agentCounter;}
 int Session::getAgentSize() const {return agentSize;}
+void Session::setRed(int toChange) {red[toChange]=true;}
+void Session::setYellow(int toChange) {yellow[toChange]=true;}
 
 Graph Session::getGraph() const {return g;}
 TreeType Session::getTreeType() const {return treeType;}
