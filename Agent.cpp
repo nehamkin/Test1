@@ -16,5 +16,21 @@ string ContactTracer:: mytype(){return "Contacttracer :D"; }
 
 Virus::Virus(int nodeInd): nodeInd(nodeInd) {}
 string Virus::mytype() {return "Virus :(";}
-void Virus::act(Session &session) {}
+void Virus::act(Session &session) {
+    if(!session.isRed(nodeInd)){        //make sure virus is active
+        session.setRed(nodeInd);
+        session.enqueueInfected(nodeInd);
+    }
+    vector<int> neighbors = session.getGraph().getNeighborsOf(nodeInd);
+    bool infectedNeighbor = false;
+    for (int i = 0;i<neighbors.size() & !infectedNeighbor; ){               //checks node's neighbors
+       int neighbor = neighbors.at(i);
+        if (!session.isYellow(neighbor)){
+           session.setYellow(neighbor);
+           Agent* curr = new Virus(neighbor);                               //create a new virus
+           session.addAgent(*curr);
+           infectedNeighbor = true;
+       }
+    }
+}
 void ContactTracer::act(Session &session) {}
