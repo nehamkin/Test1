@@ -1,6 +1,6 @@
 #ifndef TREE_H_
 #define TREE_H_
-
+using namespace std;
 #include <vector>
 
 class Session;
@@ -15,7 +15,7 @@ public:
     static Tree* createTree(const Session& session, int rootLabel);
     virtual int traceTree()=0;
     int getNode() const{return node;}
-    vector<Tree*> getChildren() const {return children;}
+    vector<Tree*> getChildren() const;
     virtual Tree* clone() const=0;
     void printTree();
     void printLevel(int level);

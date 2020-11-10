@@ -43,6 +43,8 @@ Tree* Tree::createTree(const Session &session, int rootLabel) {
 
 }
 
+vector<Tree*> Tree::getChildren() const {return children;}
+
 void Tree::printLevel( int level){
     if(level == 0){
         cout<<getNode()<<ends;
