@@ -55,7 +55,7 @@ void Virus::act(Session &session) {
     }
     vector<int> neighbors = session.getGraph().getNeighborsOf(nodeInd);
     bool infectedNeighbor = false;
-    for (int i = 0;i<neighbors.size() & !infectedNeighbor; ){               //checks node's neighbors
+    for (int i = 0;i<neighbors.size() & !infectedNeighbor;i++ ){               //checks node's neighbors
        int neighbor = neighbors.at(i);
         if (!session.isYellow(neighbor)){
            session.setYellow(neighbor);
