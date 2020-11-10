@@ -27,7 +27,7 @@ public:
     void setGraph(const Graph& graph);
     void enqueueInfected(int);
     int dequeueInfected();
-
+    void detachVertex(int v);
     TreeType getTreeType() const;
     void printGraph();
     void printAgents();
@@ -40,6 +40,7 @@ public:
     int getAgentSize() const;
     void setRed(int toChange);
     void setYellow(int toChange);
+    bool isInfectedQempty();
 private:
     Graph g;
     TreeType treeType;

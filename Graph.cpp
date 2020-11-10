@@ -19,3 +19,8 @@ vector<int> Graph::getNeighborsOf(int vertex) {
     }
     return neighbors;
 }
+void Graph::detachVertex(int v) {
+    for(int i=0; i<edges.size(); i++){
+        deleteEdge(v,i);
+    }
+}

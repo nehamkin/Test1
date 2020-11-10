@@ -10,6 +10,7 @@ public:
     void infectNode(int nodeInd);
     bool isInfected(int nodeInd);
     void deleteEdge(int a,int b);
+    void detachVertex(int v);
     vector<int> getNeighborsOf(int vertex);
     vector<vector<int>> getEdges() const;
     int numberOfVertices();

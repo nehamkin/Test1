@@ -44,6 +44,7 @@ int Session::getAgentSize() const {return agentSize;}
 // --------------Red Yellow vector functions --------------
 bool Session:: isRed(int x) const {return red[x];}
 bool Session:: isYellow(int x) const {return yellow[x];}
+bool Session::isInfectedQempty() {return infectedQ.empty();}
 void Session::setRed(int toChange) {red[toChange]=true;}
 void Session::setYellow(int toChange) {yellow[toChange]=true;}
 //---------------NQ DQ -----------------------------------
@@ -54,8 +55,13 @@ int Session::dequeueInfected() {
     return x;
 }
 //-----------------------------------------------------
+void Session::addAgent(const Agent &agent) {
 
+}
 
+void Session::detachVertex(int v) {
+    g.detachVertex(v);
+}
 
 //------------------Printers------------------------------------
 void Session::printGraph() {

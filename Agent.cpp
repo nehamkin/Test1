@@ -1,18 +1,44 @@
 //
 // Created by spl211 on 06/11/2020.
 //
-
+#include "Tree.h"
 #include "Agent.h"
 
-void detach(Session sess, int toDetach){
-    for(int i=0; i<sess.getGraph().getEdges().size(); i++){
-        sess.getGraph().deleteEdge(toDetach,i);
+Tree* BFS(int root,Session session) {
+    Tree *tree = Tree::createTree(session, root);
+    int numOfV = session.getGraph().numberOfVertices();
+    vector<bool> isVisited;
+    vector<bool> inQueue;
+    for (int i = 0; i < numOfV; i++) {
+        isVisited.push_back(false);
+        inQueue.push_back(false);
     }
+    queue<Tree*> myQueue;
+    myQueue.push(tree);
+    isVisited.at(root) = true;
+    while (!myQueue.empty()) {
+        Tree* curr1 = myQueue.front();
+        myQueue.pop();
+        int currentNode =curr1->getNode();
+        isVisited.at(currentNode) = true;
+        vector<int> neighbors = session.getGraph().getEdges()[currentNode];
+        for (int neighbor=0 ;neighbor< numOfV; neighbor++){
+            if (neighbors.at(neighbor)==1 & !isVisited.at(neighbor) & !inQueue.at(neighbor)){
+                Tree* curr2 = Tree::createTree(session,neighbor);
+                curr1->addChild(curr2);
+                myQueue.push(curr2);
+                inQueue.at(neighbor) = true;
+            }
+        }
+    }
+    return tree;
 }
+
 Agent::Agent() {}
 string Agent::mytype() {return "agent";}
 ContactTracer::ContactTracer() {}
 string ContactTracer:: mytype(){return "Contacttracer :D"; }
+
 
 Virus::Virus(int nodeInd): nodeInd(nodeInd) {}
 string Virus::mytype() {return "Virus :(";}
@@ -33,4 +59,10 @@ void Virus::act(Session &session) {
        }
     }
 }
-void ContactTracer::act(Session &session) {}
+void ContactTracer::act(Session &session) {
+    if(!session.isInfectedQempty()){
+        Tree* tree = BFS(session.dequeueInfected(),session);
+        int toDetach = tree->traceTree();
+        session.detachVertex(toDetach);
+    }
+}

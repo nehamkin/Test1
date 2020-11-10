@@ -16,6 +16,7 @@ class ContactTracer: public Agent{
 public:
     ContactTracer();
     string mytype();
+//    virtual Agent* clone()
     virtual void act(Session& session);
 };
 
@@ -24,6 +25,7 @@ class Virus: public Agent{
 public:
     Virus(int nodeInd);
     string mytype();
+//    virtual Agent* clone()
     virtual void act(Session& session);
 private:
     const int nodeInd;
