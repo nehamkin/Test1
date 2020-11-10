@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 #include "Graph.h"
-
+#include <queue>
 #include <fstream>
 #include <iostream>
 #include "json.hpp"
@@ -40,6 +40,14 @@ private:
     TreeType treeType;
     std::vector<Agent*> agents;
     int cycleNum;
+    vector<bool> red;
+    vector<bool> yellow;
+    int agentCounter;
+    int agentSize;
+    queue<int> infected;
+
+
+
 };
 
 #endif
