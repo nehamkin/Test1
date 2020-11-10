@@ -20,14 +20,20 @@ Session::Session(const std::string &path) {
 //    ---- Graph g ----
     vector<vector<int>> matrix = j["graph"];
     Graph graph(matrix);
-    g=graph;
+    g = graph;
 //    ----Agents----
-    for(auto& elem: j["agents"]){
-        if(elem[0]=="V")
+    for (auto &elem: j["agents"]) {
+        if (elem[0] == "V")
             agents.push_back(new Virus(elem[1]));
         else
             agents.push_back(new ContactTracer);
     }
+    int numOfV = g.numberOfVertices();
+    for (int i = 0; i < numOfV; i++) {
+        red[i] = false;
+        yellow[i] = false;
+    }
+    agentSize=agents.size();
 }
 
 Graph Session::getGraph() const {return g;}

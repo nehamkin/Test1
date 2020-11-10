@@ -34,17 +34,22 @@ public:
     void printType();
     Graph getGraph()const;
     int getCycle() const;
-
+    vector<bool> getRed() const;
+    vector<bool> getYellow() const;
+    int getAgentCounter() const;
+    int getAgentSize() const;
+    void setRed(int toChange);
+    void setYellow(int toChange);
 private:
     Graph g;
     TreeType treeType;
     std::vector<Agent*> agents;
     int cycleNum;
-    vector<bool> red;
-    vector<bool> yellow;
-    int agentCounter;
-    int agentSize;
-    queue<int> infected;
+    vector<bool> red; // sick vertices
+    vector<bool> yellow; //infected vertices
+    int agentCounter; // counts how many agents acted
+    int agentSize;// how many agents need to act
+    queue<int> infectedQ;
 
 
 
