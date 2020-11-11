@@ -4,6 +4,7 @@
 
 #include "Session.h"
 #include "Agent.h"
+
 //------------constructor------------------
 Session::Session(const std::string &path) {
     ifstream i(path);
@@ -34,6 +35,25 @@ Session::Session(const std::string &path) {
         yellow.push_back(false);
     }
     agentSize=agents.size();
+}
+Session:: ~Session() {
+    agents.clear();
+}
+Session::Session(const Session &other) {
+    //g = other.g.clone();
+    treeType = other.treeType;
+    for (int i = 0; i<other.agentSize ;i++){
+        Agent* curr = other.agents.at(i)->clone();
+        agents.push_back(curr);
+    }
+    agentSize = agents.size();
+    cycleNum = other.cycleNum;
+    red = other.red;
+    yellow = other.yellow;
+    infectedQ = other.infectedQ;
+}
+Session& Session::operator=(const Session &other){
+
 }
 //----------------getters and setters -------------------
 Graph Session::getGraph() const {return g;}

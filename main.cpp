@@ -45,14 +45,10 @@ int main(int argc, char** argv){
         return 0;
     }
    Session sess(argv[1]);
-    Agent* virus0 = new Virus(0);
-    sess.setYellow(0);
-    virus0->act(sess);
-    virus0->act(sess);
-    Agent* virus4 = new Virus(4);
-    virus4->act(sess);
-
-    sess.printGraph();
+    int i = 6;
+    int j = i;
+    i = 7;
+    cout<<j<<endl;
 //    sess.simulate();
     return 0;
 }
