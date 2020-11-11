@@ -183,6 +183,7 @@ int CycleTree::traceTree(){
 }
 int RootTree::traceTree() {return getNode();}
 void Tree::clearpointers(){
-    for(auto element:children)
-        delete element;
+  /*  int childrensize = children.size();
+    for(int i =0; i< childrensize; i++)
+        delete children.at(children.end());*/
 }

@@ -61,9 +61,9 @@ int main(int argc, char** argv){
     t3->addChild(t6);
     bool i = false;
     vector<Tree*> v = t0->getChildren();
-    delete v.at(0);
+    v.pop_back();
 
-    t0->clearpointers();
+    //t0->clearpointers();
     while (!i){
         MaxRankTree* m0 = new MaxRankTree(10);
         delete m0;
