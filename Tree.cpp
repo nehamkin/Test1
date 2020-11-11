@@ -39,6 +39,14 @@ Tree & Tree::operator=(Tree &&tree) {
 }
 
 CycleTree::CycleTree(int rootLabel, int currCycle) :Tree(rootLabel),currCycle(currCycle){}
+CycleTree::CycleTree(const CycleTree & other):Tree(other),currCycle(other.currCycle){};
+CycleTree& CycleTree::operator=(const CycleTree &other){
+    currCycle = other.currCycle;
+   /* for (int i =0; i<other.children.size(); i++){
+        Tree* curr = other.children.at(i)->clone();
+        children.push_back(curr);
+    }*/
+}
 MaxRankTree::MaxRankTree(int rootLabel):Tree(rootLabel) {}
 RootTree::RootTree(int rootLabel) :Tree(rootLabel){}
 

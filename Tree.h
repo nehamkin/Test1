@@ -31,6 +31,8 @@ private:
 class CycleTree: public Tree{
 public:
     CycleTree(int rootLabel, int currCycle);
+    CycleTree(const CycleTree & other);
+    CycleTree& operator=(const CycleTree &other);
     virtual int traceTree();
     virtual Tree* clone() const;
 private:
