@@ -47,8 +47,11 @@ CycleTree& CycleTree::operator=(const CycleTree &other){
         children.push_back(curr);
     }
 }
+CycleTree::~CycleTree() {children.clear();}
 MaxRankTree::MaxRankTree(int rootLabel):Tree(rootLabel) {}
+MaxRankTree::~MaxRankTree() {children.clear();}
 RootTree::RootTree(int rootLabel) :Tree(rootLabel){}
+RootTree::~RootTree(){children.clear();}
 
 Tree* Tree::createTree(const Session &session, int rootLabel) {
     Tree* tree;
