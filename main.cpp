@@ -45,32 +45,36 @@ int main(int argc, char** argv){
         return 0;
     }
     Session sess(argv[1]);
-    Tree* t0 = Tree::createTree(sess, 0);
-    Tree* t1 = Tree::createTree(sess, 1);
-    Tree* t2 = Tree::createTree(sess, 2);
-    Tree* t3 = Tree::createTree(sess, 3);
-    Tree* t4 = Tree::createTree(sess, 4);
-    Tree* t5 = Tree::createTree(sess, 5);
-    Tree* t6 = Tree::createTree(sess, 6);
-    Tree* t7 = Tree::createTree(sess, 7);
-    t0->addChild(t1);
-    t0->addChild(t2);
-    t0->addChild(t3);
-    t1->addChild(t4);
-    t1->addChild(t5);
-    t3->addChild(t6);
-    bool i = false;
-    vector<Tree*> v = t0->getChildren();
-    delete v.at(0);
+    sess.printGraph();
+    cout<<endl;
+//    Tree* t0 = Tree::createTree(sess, 0);
+//    Tree* t1 = Tree::createTree(sess, 1);
+//    Tree* t2 = Tree::createTree(sess, 2);
+//    Tree* t3 = Tree::createTree(sess, 3);
+//    Tree* t4 = Tree::createTree(sess, 4);
+//    Tree* t5 = Tree::createTree(sess, 5);
+//    Tree* t6 = Tree::createTree(sess, 6);
+//    Tree* t7 = Tree::createTree(sess, 7);
+//    t0->addChild(t1);
+//    t0->addChild(t2);
+//    t0->addChild(t3);
+//    t1->addChild(t4);
+//    t1->addChild(t5);
+//    t3->addChild(t6);
+//    bool i = false;
+//    vector<Tree*> v = t0->getChildren();
+//    delete v.at(0);
+//
+//    t0->clearpointers();
+//    while (!i){
+//        MaxRankTree* m0 = new MaxRankTree(10);
+//        delete m0;
+//        i = true;
+//    }
 
-    t0->clearpointers();
-    while (!i){
-        MaxRankTree* m0 = new MaxRankTree(10);
-        delete m0;
-        i = true;
-    }
 
-
-//    sess.simulate();
+    sess.simulate();
+    sess.printGraph();
+    sess.printAgents();
     return 0;
 }
