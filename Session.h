@@ -28,6 +28,7 @@ public:
     Session(Session && other);
     Session& operator=(Session &&other);
     void simulate();
+    bool condition();
     void addAgent(const Agent& agent);
     void setGraph(const Graph& graph);
     void enqueueInfected(int);

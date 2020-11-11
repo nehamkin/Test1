@@ -3,6 +3,7 @@
 //
 #include "Tree.h"
 #include "Agent.h"
+#include "Graph.h"
 
 Tree* BFS(int root,Session session) {
     Tree *tree = Tree::createTree(session, root);
