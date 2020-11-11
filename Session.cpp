@@ -58,6 +58,26 @@ Session& Session::operator=(const Session &other){
         agents.push_back(curr);
     }
 }
+Session::Session(Session && other): treeType(other.treeType),g(other.g), cycleNum(other.cycleNum), agentSize(other.agentSize),yellow(other.yellow), red(other.red), infectedQ(other.infectedQ){
+    for (int i = 0; i< agentSize;i++){
+        agents.push_back(other.agents.at(i));
+        other.agents.at(i) = nullptr;
+    }
+
+}
+Session& Session::operator=(Session &&other) {
+    treeType = other.treeType;
+    g = other.g;
+    cycleNum = other.cycleNum;
+    agentSize = other.agentSize;
+    yellow = other.yellow;
+    red = other.red;
+    infectedQ = other.infectedQ;
+    for (int i = 0; i< agentSize;i++){
+        agents.push_back(other.agents.at(i));
+        other.agents.at(i) = nullptr;
+    }
+}
 //----------------getters and setters -------------------
 Graph Session::getGraph() const {return g;}
 TreeType Session::getTreeType() const {return treeType;}

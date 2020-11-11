@@ -25,6 +25,8 @@ public:
     virtual ~Session();
     Session(const Session &other);
     Session& operator=(const Session &other);
+    Session(Session && other);
+    Session& operator=(Session &&other);
     void simulate();
     void addAgent(const Agent& agent);
     void setGraph(const Graph& graph);
