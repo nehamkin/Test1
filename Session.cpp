@@ -39,21 +39,24 @@ Session::Session(const std::string &path) {
 Session:: ~Session() {
     agents.clear();
 }
-Session::Session(const Session &other) {
-    //g = other.g.clone();
-    treeType = other.treeType;
+Session::Session(const Session &other): treeType(other.treeType),g(other.g), cycleNum(other.cycleNum), agentSize(other.agentSize),yellow(other.yellow), red(other.red), infectedQ(other.infectedQ){
     for (int i = 0; i<other.agentSize ;i++){
         Agent* curr = other.agents.at(i)->clone();
         agents.push_back(curr);
     }
-    agentSize = agents.size();
-    cycleNum = other.cycleNum;
-    red = other.red;
-    yellow = other.yellow;
-    infectedQ = other.infectedQ;
 }
 Session& Session::operator=(const Session &other){
-
+    treeType = other.treeType;
+    g = other.g;
+    cycleNum = other.cycleNum;
+    agentSize = other.agentSize;
+    yellow = other.yellow;
+    red = other.red;
+    infectedQ = other.infectedQ;
+    for (int i = 0; i<other.agentSize ;i++){
+        Agent* curr = other.agents.at(i)->clone();
+        agents.push_back(curr);
+    }
 }
 //----------------getters and setters -------------------
 Graph Session::getGraph() const {return g;}
