@@ -42,13 +42,16 @@ CycleTree::CycleTree(int rootLabel, int currCycle) :Tree(rootLabel),currCycle(cu
 CycleTree::CycleTree(const CycleTree & other):Tree(other),currCycle(other.currCycle){};
 CycleTree& CycleTree::operator=(const CycleTree &other){
     currCycle = other.currCycle;
-   /* for (int i =0; i<other.children.size(); i++){
+    for (int i =0; i<other.children.size(); i++){
         Tree* curr = other.children.at(i)->clone();
         children.push_back(curr);
-    }*/
+    }
 }
+CycleTree::~CycleTree() {children.clear();}
 MaxRankTree::MaxRankTree(int rootLabel):Tree(rootLabel) {}
+MaxRankTree::~MaxRankTree() {children.clear();}
 RootTree::RootTree(int rootLabel) :Tree(rootLabel){}
+RootTree::~RootTree(){children.clear();}
 
 Tree* Tree::createTree(const Session &session, int rootLabel) {
     Tree* tree;

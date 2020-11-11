@@ -23,7 +23,7 @@ public:
     void printTree();
     void printLevel(int level);
 
-private:
+protected:
     int node;
     std::vector<Tree*> children; //vectors are allocated on the heap
 };
@@ -31,6 +31,7 @@ private:
 class CycleTree: public Tree{
 public:
     CycleTree(int rootLabel, int currCycle);
+    ~CycleTree();
     CycleTree(const CycleTree & other);
     CycleTree& operator=(const CycleTree &other);
     virtual int traceTree();
@@ -42,6 +43,7 @@ private:
 class MaxRankTree: public Tree{
 public:
     MaxRankTree(int rootLabel);
+    ~MaxRankTree();
     virtual int traceTree();
     virtual Tree* clone() const;
 };
@@ -49,6 +51,7 @@ public:
 class RootTree: public Tree{
 public:
     RootTree(int rootLabel);
+    ~RootTree();
     virtual int traceTree();
     virtual Tree* clone() const;
 };
