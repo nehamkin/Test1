@@ -52,6 +52,7 @@ string Virus::mytype() {return "Virus :(";}
 void Virus::act(Session &session) {
     if(!session.isRed(nodeInd)){        //make sure virus is active
         session.setRed(nodeInd);
+        session.setYellow(nodeInd); // so that first agents make the first viruses yellow
         session.enqueueInfected(nodeInd);
     }
     vector<int> neighbors = session.getGraph().getNeighborsOf(nodeInd);
