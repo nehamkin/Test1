@@ -45,7 +45,7 @@ int main(int argc, char** argv){
         return 0;
     }
     Session sess(argv[1]);
-   /* Tree* t0 = Tree::createTree(sess, 0);
+    Tree* t0 = Tree::createTree(sess, 0);
     Tree* t1 = Tree::createTree(sess, 1);
     Tree* t2 = Tree::createTree(sess, 2);
     Tree* t3 = Tree::createTree(sess, 3);
@@ -58,11 +58,15 @@ int main(int argc, char** argv){
     t0->addChild(t3);
     t1->addChild(t4);
     t1->addChild(t5);
-    t3->addChild(t6); */
+    t3->addChild(t6);
     bool i = false;
-    Tree* t0 = Tree::createTree(sess, 4);
+    vector<Tree*> v = t0->getChildren();
+    delete v.at(0);
+
+    t0->clearpointers();
     while (!i){
         MaxRankTree* m0 = new MaxRankTree(10);
+        delete m0;
         i = true;
     }
 

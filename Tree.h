@@ -22,6 +22,7 @@ public:
     virtual Tree* clone() const=0;
     void printTree();
     void printLevel(int level);
+    void clearpointers();
 
 protected:
     int node;
@@ -55,5 +56,7 @@ public:
     virtual int traceTree();
     virtual Tree* clone() const;
 };
+
+
 
 #endif
