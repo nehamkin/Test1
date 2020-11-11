@@ -23,7 +23,7 @@ public:
     void printTree();
     void printLevel(int level);
 
-private:
+protected:
     int node;
     std::vector<Tree*> children; //vectors are allocated on the heap
 };

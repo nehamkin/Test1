@@ -60,10 +60,13 @@ int main(int argc, char** argv){
     t1->addChild(t5);
     t3->addChild(t6);
 
-    Tree* t0c = Tree::createTree(sess, 10);
-    *t0c = *t0;
-    MaxRankTree* m0 = new MaxRankTree(5);
-    MaxRankTree* m1 = new MaxRankTree(*m0);
+
+    MaxRankTree* m0 = new MaxRankTree(10);
+    m0->addChild(t0);
+    MaxRankTree* m1 = new MaxRankTree(*m0);         //copy construct
+    MaxRankTree* m2 = new MaxRankTree(7);
+    *m2 = *m0;                                      //=operator
+
 //    sess.simulate();
     return 0;
 }
