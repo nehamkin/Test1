@@ -8,16 +8,34 @@
 using namespace std;
 
 Tree::Tree(int rootLabel): node(rootLabel), children(){}
-//Tree::Tree(const Tree& tree):children(tree.children),node(tree.node){}
 Tree:: ~Tree(){
-    if(!children.empty())
-        for(Tree* tree:children)
-            delete tree;
+    children.clear();
 }
-//Tree:: ~Tree() {if(children) delete children;}
-Tree:: Tree(const Tree& other){
-    node=other.node;
-    children=other.children;
+Tree::Tree(const Tree& tree):node(tree.node){
+    for (int i =0; i<tree.children.size(); i++){
+        Tree* curr = tree.children.at(i)->clone();
+        children.push_back(curr);
+    }
+}
+Tree& Tree::operator=(const Tree& tree){
+    node = tree.node;
+    for (int i =0; i<tree.children.size(); i++){
+        Tree* curr = tree.children.at(i)->clone();
+        children.push_back(curr);
+    }
+}
+Tree::Tree(Tree&& tree): node(tree.node){
+    for (int i =0; i<tree.children.size(); i++){
+        children.push_back(tree.children.at(i));
+        tree.children.at(i) = nullptr;
+    }
+}
+Tree & Tree::operator=(Tree &&tree) {
+    node = tree.node;
+    for (int i =0; i<tree.children.size(); i++){
+        children.push_back(tree.children.at(i));
+        tree.children.at(i) = nullptr;
+    }
 }
 
 CycleTree::CycleTree(int rootLabel, int currCycle) :Tree(rootLabel),currCycle(currCycle){}
