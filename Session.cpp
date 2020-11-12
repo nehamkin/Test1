@@ -37,7 +37,9 @@ Session::Session(const std::string &path) {
     agentSize=agents.size();
 }
 Session:: ~Session() {
-    agents.clear();
+        for (Agent *elem: agents) {
+            delete elem;
+        }
 }
 Session::Session(const Session &other): treeType(other.treeType),g(other.g), cycleNum(other.cycleNum), agentSize(other.agentSize),yellow(other.yellow), red(other.red), infectedQ(other.infectedQ){
     for (int i = 0; i<other.agentSize ;i++){

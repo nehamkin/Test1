@@ -26,7 +26,7 @@ void Graph::detachVertex(int v) {
     }
 }
 
-void Graph::DFS(int v, vector<bool> *visited,vector<int> *component) {
+void Graph::DFS(int v, vector<bool> *visited,vector<int> *component) { //the v
     (*visited)[v]=true;
     (*component).push_back(v);
     for(int i=0; i<numberOfVertices();i++){
