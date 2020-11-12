@@ -59,16 +59,17 @@ int main(int argc, char** argv){
     t1->addChild(t4);
     t1->addChild(t5);
     t3->addChild(t6);
+    t3->addChild(t7);
     bool i = false;
-    vector<Tree*> v = t0->getChildren();
-    v.pop_back();
 
-    //t0->clearpointers();
+
+    t0->clearpointers();
     while (!i){
         MaxRankTree* m0 = new MaxRankTree(10);
         delete m0;
         i = true;
     }
+    delete t0;
 
 
 //    sess.simulate();
