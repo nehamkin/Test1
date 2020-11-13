@@ -46,6 +46,7 @@ public:
     void setRed(int toChange);
     void setYellow(int toChange);
     bool isInfectedQempty();
+    void clear();
 
 private:
     Graph g;

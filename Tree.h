@@ -32,11 +32,12 @@ protected:
 class CycleTree: public Tree{
 public:
     CycleTree(int rootLabel, int currCycle);
-    ~CycleTree();
-    CycleTree(const CycleTree & other);
-    CycleTree& operator=(const CycleTree &other);
+//    ~CycleTree();
+//    CycleTree(const CycleTree & other);
+//    CycleTree& operator=(const CycleTree &other);
     virtual int traceTree();
     virtual Tree* clone() const;
+    void printTree();
 private:
     int currCycle;
 };
@@ -44,7 +45,7 @@ private:
 class MaxRankTree: public Tree{
 public:
     MaxRankTree(int rootLabel);
-    ~MaxRankTree();
+//    ~MaxRankTree();
     virtual int traceTree();
     virtual Tree* clone() const;
 };
@@ -52,7 +53,7 @@ public:
 class RootTree: public Tree{
 public:
     RootTree(int rootLabel);
-    ~RootTree();
+//    ~RootTree();
     virtual int traceTree();
     virtual Tree* clone() const;
 };

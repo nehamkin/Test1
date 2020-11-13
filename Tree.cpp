@@ -12,49 +12,57 @@ Tree:: ~Tree(){
     clearpointers();
     children.clear();
 }
-Tree::Tree(const Tree& tree):node(tree.node){
+Tree::Tree(const Tree& tree):node(tree.node){ //looks good
     for (int i =0; i<tree.children.size(); i++){
         Tree* curr = tree.children.at(i)->clone();
         children.push_back(curr);
     }
 }
 Tree& Tree::operator=(const Tree& tree){
-    node = tree.node;
-    for (int i =0; i<tree.children.size(); i++){
-        Tree* curr = tree.children.at(i)->clone();
-        children.push_back(curr);
+    if(this!=&tree){
+        clearpointers();
+        node = tree.node;
+        for (int i =0; i<tree.children.size(); i++){
+            Tree* curr = tree.children.at(i)->clone();
+            children.push_back(curr);
+        }
     }
+    return *this;
 }
-Tree::Tree(Tree&& tree): node(tree.node){
+Tree::Tree(Tree&& tree): node(tree.node){ // looks good
     for (int i =0; i<tree.children.size(); i++){
         children.push_back(tree.children.at(i));
         tree.children.at(i) = nullptr;
     }
 }
 Tree & Tree::operator=(Tree &&tree) {
-    node = tree.node;
-    for (int i =0; i<tree.children.size(); i++){
-        children.push_back(tree.children.at(i));
-        tree.children.at(i) = nullptr;
+    if(this!=&tree) {
+        clearpointers();
+        node = tree.node;
+        for (int i = 0; i < tree.children.size(); i++) {
+            children.push_back(tree.children.at(i));
+            tree.children.at(i) = nullptr;
+        }
     }
+    return *this;
 }
 
 CycleTree::CycleTree(int rootLabel, int currCycle) :Tree(rootLabel),currCycle(currCycle){}
-CycleTree::CycleTree(const CycleTree & other):Tree(other),currCycle(other.currCycle){};
-CycleTree& CycleTree::operator=(const CycleTree &other){
-    currCycle = other.currCycle;
-    for (int i =0; i<other.children.size(); i++){
-        Tree* curr = other.children.at(i)->clone();
-        children.push_back(curr);
-    }
-}
-CycleTree::~CycleTree() {clearpointers();}
+//CycleTree::CycleTree(const CycleTree & other):Tree(other),currCycle(other.currCycle){};
+//CycleTree& CycleTree::operator=(const CycleTree &other){
+//    currCycle = other.currCycle;
+//    for (int i =0; i<other.children.size(); i++){
+//        Tree* curr = other.children.at(i)->clone();
+//        children.push_back(curr);
+//    }
+//}
+//CycleTree::~CycleTree() {clearpointers();}
 MaxRankTree::MaxRankTree(int rootLabel):Tree(rootLabel) {}
-MaxRankTree::~MaxRankTree() {
-    clearpointers();
-}
+//MaxRankTree::~MaxRankTree() {
+//    clearpointers();
+//}
 RootTree::RootTree(int rootLabel) :Tree(rootLabel){}
-RootTree::~RootTree(){clearpointers();}
+//RootTree::~RootTree(){clearpointers();}
 
 Tree* Tree::createTree(const Session &session, int rootLabel) {
     Tree* tree;
@@ -96,6 +104,11 @@ void Tree:: printTree(){
         printLevel(i);
         cout<<""<<endl;
     }
+}
+
+void CycleTree::printTree() {
+    cout<<"cycles:"<<currCycle<<endl;
+    cout<<"root:"<<node<<endl;
 }
 
 //int Tree::traceTree() {return 0;}
@@ -183,9 +196,11 @@ int CycleTree::traceTree(){
     return ans;
 }
 int RootTree::traceTree() {return getNode();}
-void Tree::clearpointers(){
-  for(auto child: children) {
-      delete child;
-  }
-  children.clear();
+void Tree::clearpointers() {
+    if (&children != nullptr) {
+        for (auto child: children) {
+            delete child;
+        }
+        children.clear();
+}
 }

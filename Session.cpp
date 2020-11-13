@@ -37,10 +37,13 @@ Session::Session(const std::string &path) {
     agentSize=agents.size();
 }
 Session:: ~Session() {
-        for (Agent *elem: agents) {
-            delete elem;
-        }
-        agents.clear();
+        clear();
+}
+void Session::clear() {
+    for (Agent *elem: agents) {
+        delete elem;
+    }
+    agents.clear();
 }
 Session::Session(const Session &other): treeType(other.treeType),g(other.g), cycleNum(other.cycleNum), agentSize(other.agentSize),yellow(other.yellow), red(other.red), infectedQ(other.infectedQ){
     for (int i = 0; i<other.agentSize ;i++){
@@ -49,16 +52,19 @@ Session::Session(const Session &other): treeType(other.treeType),g(other.g), cyc
      }
 }
 Session& Session::operator=(const Session &other){
-    treeType = other.treeType;
-    g = other.g;
-    cycleNum = other.cycleNum;
-    agentSize = other.agentSize;
-    yellow = other.yellow;
-    red = other.red;
-    infectedQ = other.infectedQ;
-    for (int i = 0; i<other.agentSize ;i++){
-        Agent* curr = other.agents.at(i)->clone();
-        agents.push_back(curr);
+    if(this!=&other) {
+        clear();
+        treeType = other.treeType;
+        g = other.g;
+        cycleNum = other.cycleNum;
+        agentSize = other.agentSize;
+        yellow = other.yellow;
+        red = other.red;
+        infectedQ = other.infectedQ;
+        for (int i = 0; i < other.agentSize; i++) {
+            Agent *curr = other.agents.at(i)->clone();
+            agents.push_back(curr);
+        }
     }
 }
 Session::Session(Session && other): treeType(other.treeType),g(other.g), cycleNum(other.cycleNum), agentSize(other.agentSize),yellow(other.yellow), red(other.red), infectedQ(other.infectedQ){
@@ -69,17 +75,22 @@ Session::Session(Session && other): treeType(other.treeType),g(other.g), cycleNu
 
 }
 Session& Session::operator=(Session &&other) {
-    treeType = other.treeType;
-    g = other.g;
-    cycleNum = other.cycleNum;
-    agentSize = other.agentSize;
-    yellow = other.yellow;
-    red = other.red;
-    infectedQ = other.infectedQ;
-    for (int i = 0; i< agentSize;i++){
-        agents.push_back(other.agents.at(i));
-        other.agents.at(i) = nullptr;
+    if(this!= &other) {
+        clear();
+        treeType = other.treeType;
+        g = other.g;
+        cycleNum = other.cycleNum;
+        agentSize = other.agentSize;
+        yellow = other.yellow;
+        red = other.red;
+        infectedQ = other.infectedQ;
+        agents = other.agents;
+        for (int i = 0; i < agentSize; i++) {
+            agents.push_back(other.agents.at(i));
+            other.agents.at(i) = nullptr;
+        }
     }
+    return *this;
 }
 //----------------getters and setters -------------------
 Graph Session::getGraph() const {return g;}

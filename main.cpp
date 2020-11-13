@@ -49,6 +49,21 @@ int main(int argc, char** argv){
     Virus v2(v1);
     Agent* a1 = &v1;
     Agent *a2= &v2;
+    CycleTree *ct1=new CycleTree(3,5);
+    CycleTree ct2(*ct1);
+    ct1->printTree();
+    ct2.printTree();
+    Tree *t1= ct1;
+    Tree* t2=&ct2;
+    t1->printTree();
+    t2->printTree();
+    CycleTree ct3(10,12);
+    ct3.printTree();
+    delete ct1;
+//    ct3 = ct1;
+//    ct3 = &ct1;
+
+
 //    a1->print();
 //    a2->print();
 //    Tree* t0 = Tree::createTree(sess, 0);
