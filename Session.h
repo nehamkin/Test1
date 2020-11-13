@@ -42,7 +42,6 @@ public:
     int getCycle() const;
     bool isRed(int x) const;
     bool isYellow(int x) const;
-    int getAgentCounter() const;
     int getAgentSize() const;
     void setRed(int toChange);
     void setYellow(int toChange);
@@ -55,12 +54,9 @@ private:
     int cycleNum;
     vector<bool> red; // sick vertices
     vector<bool> yellow; //infected vertices
-    int agentCounter; // counts how many agents acted
+//    int agentCounter; // counts how many agents acted
     int agentSize;// how many agents need to act
     queue<int> infectedQ;
-
-
-
 };
 
 #endif

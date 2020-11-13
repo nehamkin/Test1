@@ -40,6 +40,7 @@ Session:: ~Session() {
         for (Agent *elem: agents) {
             delete elem;
         }
+        agents.clear();
 }
 Session::Session(const Session &other): treeType(other.treeType),g(other.g), cycleNum(other.cycleNum), agentSize(other.agentSize),yellow(other.yellow), red(other.red), infectedQ(other.infectedQ){
     for (int i = 0; i<other.agentSize ;i++){
@@ -84,7 +85,6 @@ Session& Session::operator=(Session &&other) {
 Graph Session::getGraph() const {return g;}
 TreeType Session::getTreeType() const {return treeType;}
 int Session::getCycle() const {return cycleNum;}
-int Session::getAgentCounter() const {return agentCounter;}
 int Session::getAgentSize() const {return agentSize;}
 // --------------Red Yellow vector functions --------------
 bool Session:: isRed(int x) const {return red[x];}
