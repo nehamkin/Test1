@@ -9,6 +9,7 @@ using namespace std;
 
 Tree::Tree(int rootLabel): node(rootLabel), children(){}
 Tree:: ~Tree(){
+    clearpointers();
     children.clear();
 }
 Tree::Tree(const Tree& tree):node(tree.node){

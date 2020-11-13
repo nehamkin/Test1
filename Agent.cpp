@@ -61,8 +61,8 @@ void Virus::act(Session &session) {
        int neighbor = neighbors.at(i);
         if (!session.isYellow(neighbor)){
            session.setYellow(neighbor);
-           Agent* curr = new Virus(neighbor);                               //create a new virus
-           session.addAgent(*curr);
+           Agent* curr = new Virus(neighbor);       //stored on heap                         //create a new virus
+           session.addAgent(*curr);                 // clones curr and stores clone on heap , curr never gets deleted
            infectedNeighbor = true;
        }
     }
@@ -71,6 +71,7 @@ void ContactTracer::act(Session &session) {
     if(!session.isInfectedQempty()){
         Tree* tree = BFS(session.dequeueInfected(),session);
         int toDetach = tree->traceTree();
+        delete tree;
         session.detachVertex(toDetach);
     }
 }

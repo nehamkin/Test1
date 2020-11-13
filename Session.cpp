@@ -46,7 +46,7 @@ Session::Session(const Session &other): treeType(other.treeType),g(other.g), cyc
     for (int i = 0; i<other.agentSize ;i++){
         Agent* curr = other.agents.at(i)->clone();
         agents.push_back(curr);
-    }
+     }
 }
 Session& Session::operator=(const Session &other){
     treeType = other.treeType;
