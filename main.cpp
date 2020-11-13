@@ -45,6 +45,12 @@ int main(int argc, char** argv){
         return 0;
     }
     Session sess(argv[1]);
+    Virus v1(4);
+    Virus v2(v1);
+    Agent* a1 = &v1;
+    Agent *a2= &v2;
+//    a1->print();
+//    a2->print();
 //    Tree* t0 = Tree::createTree(sess, 0);
 //    Tree* t1 = Tree::createTree(sess, 1);
 //    Tree* t2 = Tree::createTree(sess, 2);

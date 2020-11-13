@@ -36,6 +36,7 @@ Tree* BFS(int root,Session session) {
 }
 
 Agent::Agent() {}
+Agent::Agent(const Agent &agent) {}
 string Agent::mytype() {return "agent";}
 ContactTracer::ContactTracer() {}
 string ContactTracer:: mytype(){return "Contacttracer :D"; }
@@ -61,7 +62,8 @@ void Virus::act(Session &session) {
        int neighbor = neighbors.at(i);
         if (!session.isYellow(neighbor)){
            session.setYellow(neighbor);
-           Agent* curr = new Virus(neighbor);       //stored on heap                         //create a new virus
+           Virus virus(neighbor);
+           Agent* curr=&virus;                      //create a new virus
            session.addAgent(*curr);                 // clones curr and stores clone on heap , curr never gets deleted
            infectedNeighbor = true;
        }
@@ -75,3 +77,7 @@ void ContactTracer::act(Session &session) {
         session.detachVertex(toDetach);
     }
 }
+
+//void ContactTracer::print(){cout<<"contact"<<endl;}
+//void Virus::print() {cout<<"Virus:"<<nodeInd<<endl;}
+//void Agent::print() {cout<<"Agent"<<endl;}

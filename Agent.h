@@ -7,9 +7,11 @@
 class Agent{
 public:
     Agent();
+    Agent(const Agent &agent); // copy constructor
     virtual Agent* clone() const=0;
     virtual void act(Session& session)=0;
-      virtual string mytype();
+    virtual string mytype();
+//    virtual void print();
 };
 
 class ContactTracer: public Agent{
@@ -18,6 +20,7 @@ public:
     string mytype();
     virtual Agent* clone() const;
     virtual void act(Session& session);
+//    virtual void print();
 };
 
 
@@ -27,6 +30,7 @@ public:
     string mytype();
     virtual Agent* clone() const;
     virtual void act(Session& session);
+//    virtual void print();
 private:
     const int nodeInd;
 };

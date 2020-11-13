@@ -10,8 +10,8 @@ public:
     Tree(int rootLabel);
     virtual ~Tree();
     Tree(const Tree& other);
-    Tree& operator=(const Tree& tree);
     Tree(Tree&& tree);
+    Tree& operator=(const Tree& tree);
     Tree& operator=(Tree&& tree);
     void addChild(const Tree& child);
     void addChild(Tree* child);
