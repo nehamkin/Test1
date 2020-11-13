@@ -103,5 +103,8 @@ int main(int argc, char** argv){
     sess1=sess;
     cout<<endl;
     sess1.printGraph();
+    sess =(Session(argv[1]));
+    cout<<endl;
+    sess.printGraph();
     return 0;
 }
