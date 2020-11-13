@@ -60,7 +60,8 @@ int main(int argc, char** argv){
     CycleTree ct3(10,12);
     ct3.printTree();
     delete ct1;
-//    ct3 = ct1;
+    ct3 = ct2;
+    ct3.printTree();
 //    ct3 = &ct1;
 
 
@@ -92,9 +93,15 @@ int main(int argc, char** argv){
 //    }
 //    delete t0;
 //
+    Session sess1(sess);
     sess.printGraph();
     sess.simulate();
     cout<<endl;
     sess.printGraph();
+    cout<<"sess1:"<<endl;
+    sess1.printGraph();
+    sess1=sess;
+    cout<<endl;
+    sess1.printGraph();
     return 0;
 }
