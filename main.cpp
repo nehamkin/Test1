@@ -61,6 +61,7 @@ int main(int argc, char** argv){
     ct3.printTree();
     delete ct1;
     ct3 = ct2;
+    ct3 = CycleTree(100,1000);
     ct3.printTree();
 //    ct3 = &ct1;
 
@@ -103,8 +104,8 @@ int main(int argc, char** argv){
     sess1=sess;
     cout<<endl;
     sess1.printGraph();
-    sess =(Session(argv[1]));
+    sess1 =(Session(argv[1]));
     cout<<endl;
-    sess.printGraph();
+    sess1.printGraph();
     return 0;
 }

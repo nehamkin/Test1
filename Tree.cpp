@@ -39,8 +39,8 @@ Tree & Tree::operator=(Tree &&tree) {
     if(this!=&tree) {
         clearpointers();
         node = tree.node;
+        children = tree.children;
         for (int i = 0; i < tree.children.size(); i++) {
-            children.push_back(tree.children.at(i));
             tree.children.at(i) = nullptr;
         }
     }
