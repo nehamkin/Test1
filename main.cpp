@@ -109,13 +109,12 @@ int main(int argc, char** argv){
     CycleTree* c3 = new CycleTree(3,4);
     c0->addChild(c1); c0->addChild(c2);c1->addChild(c3);
 
+   Session s2 = Session(sess);
+   sess.setYellow(4);
+   sess.enqueueInfected(8);
+   s2 = sess;
 
-    //MaxRankTree* m0c = new MaxRankTree(9);
-    CycleTree* nul = nullptr;
-    *c0 = *nul;
-
- //   CycleTree* c0c = new CycleTree(*c0c);
-
+    delete c0; delete t0; delete r0; delete m0;
 
 
 
