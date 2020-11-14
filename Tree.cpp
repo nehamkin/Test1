@@ -19,7 +19,7 @@ Tree::Tree(const Tree& tree):node(tree.node){ //looks good
     }
 }
 Tree& Tree::operator=(const Tree& tree){
-    if(this!=&tree){
+    if(this!=&tree & &tree != nullptr){
         clearpointers();
         node = tree.node;
         for (int i =0; i<tree.children.size(); i++){
