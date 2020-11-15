@@ -22,17 +22,19 @@ Session::Session(const std::string &path) {
     vector<vector<int>> matrix = j["graph"];
     Graph graph(matrix);
     g = graph;
-//    ----Agents----
-    for (auto &elem: j["agents"]) {
-        if (elem[0] == "V")
-            agents.push_back(new Virus(elem[1]));
-        else
-            agents.push_back(new ContactTracer);
-    }
     int numOfV = g.numberOfVertices();
     for (int i = 0; i < numOfV; i++) {
         red.push_back(false);
         yellow.push_back(false);
+    }
+//    ----Agents----
+    for (auto &elem: j["agents"]) {
+        if (elem[0] == "V") {
+        agents.push_back(new Virus(elem[1]));
+        yellow[elem[1]]=true;
+        }
+        else
+            agents.push_back(new ContactTracer);
     }
     agentSize=agents.size();
 }
@@ -116,7 +118,30 @@ void Session::addAgent(const Agent &agent) {
 void Session::detachVertex(int v) {
     g.detachVertex(v);
 }
+// ----------------Simulate-------------------------------------
+bool Session::condition() {
+    vector<vector<int>> components = g.connectedComponents();
+    for(vector<int> v: components){
+        bool firstRed= red[v.front()];
+        bool firstNotYellow= !yellow[v.front()]; // if vertex is not yellow thus he is blue
+        for(int x: v){
+            if(red[x]!=firstRed | !yellow[x]!=firstNotYellow){ // if there is a red vertex in a component
+                return true;
+            }
+        }
+    }
+    return false;
+}
 
+void Session::simulate() {
+    agentSize = agents.size();
+    while (condition()) {
+        for (int i = 0; i < agentSize; i++) {
+            agents[i]->act(*this);
+        }
+        agentSize = agents.size();
+    }
+}
 //------------------Printers------------------------------------
 void Session::printGraph() {
     const vector<vector<int>> matrix= g.getEdges();
@@ -132,3 +157,4 @@ void Session::printAgents() {
     i++;}
 }
 void Session::printType() {if (treeType == MaxRank) cout<<"Max rank tree"<<endl; else if (treeType == Cycle) cout<<"Cycle tree"<<endl; else cout<<"root tree"<<endl ;}
+

@@ -48,7 +48,6 @@ vector<vector<int>> Graph::connectedComponents() {
             DFS(i,&visited,&component);
             output.push_back(component);
         }
-//        output.push_back(component);
     }
     return output;
 }
