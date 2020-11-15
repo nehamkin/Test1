@@ -47,23 +47,24 @@ Tree & Tree::operator=(Tree &&tree) {
     return *this;
 }
 
-CycleTree::CycleTree(int rootLabel, int currCycle) :Tree(rootLabel),currCycle(currCycle){}
-//CycleTree::CycleTree(const CycleTree & other):Tree(other),currCycle(other.currCycle){};
-//CycleTree& CycleTree::operator=(const CycleTree &other){
-//    currCycle = other.currCycle;
-//    for (int i =0; i<other.children.size(); i++){
-//        Tree* curr = other.children.at(i)->clone();
-//        children.push_back(curr);
-//    }
-//}
-//CycleTree::~CycleTree() {clearpointers();}
-MaxRankTree::MaxRankTree(int rootLabel):Tree(rootLabel) {}
-//MaxRankTree::~MaxRankTree() {
-//    clearpointers();
-//}
-RootTree::RootTree(int rootLabel) :Tree(rootLabel){}
-//RootTree::~RootTree(){clearpointers();}
+void Tree::clearpointers() {
+    if (&children != nullptr) {
+        for (auto child: children) {
+            delete child;
+        }
+        children.clear();
+    }
+}
 
+vector<Tree*> Tree::getChildren() const {return children;}
+
+//------------constructors for sub classes -------------------------
+CycleTree::CycleTree(int rootLabel, int currCycle) :Tree(rootLabel),currCycle(currCycle){}
+
+MaxRankTree::MaxRankTree(int rootLabel):Tree(rootLabel) {}
+
+RootTree::RootTree(int rootLabel) :Tree(rootLabel){}
+//------------create tree ------------------------------------------
 Tree* Tree::createTree(const Session &session, int rootLabel) {
     Tree* tree;
     switch(session.getTreeType()){
@@ -83,62 +84,6 @@ Tree* Tree::createTree(const Session &session, int rootLabel) {
 
 }
 
-vector<Tree*> Tree::getChildren() const {return children;}
-
-void Tree::printLevel( int level){
-    if(level == 0){
-        cout<<getNode()<<ends;
-        return;
-    }
-    if(getChildren().empty())
-        return;
-    if(level>0){
-        for(int i=0;i<getChildren().size();i++){
-            getChildren()[i]->printLevel(level-1);
-        }
-    }
-}
-
-void Tree:: printTree(){
-    for(int i=0;i<15;i++){
-        printLevel(i);
-        cout<<""<<endl;
-    }
-}
-
-void CycleTree::printTree() {
-    cout<<"cycles:"<<currCycle<<endl;
-    cout<<"root:"<<node<<endl;
-}
-
-//int Tree::traceTree() {return 0;}
-
-
-//Tree* BFS(int root,Session session) {
-//    Tree *tree = Tree::createTree(session, root);
-//    int numOfV = session.getGraph().numberOfVertices();
-//    bool *isVisited = new bool[numOfV];
-//    for (int i = 0; i < numOfV; i++)
-//        isVisited[i] = false;
-//    vector<int> myqueue;
-//    myqueue.push_back((*tree).getNode());
-//    isVisited[root] = true;
-//    while (myqueue.size()!=0) {
-//        int node = myqueue.at(0);
-//        myqueue.erase(myqueue.begin());
-//        isVisited[node] = true;
-//        vector<int> neighbors = session.getGraph().getEdges()[node];
-//        for (int neighbor=0 ;neighbor<= numOfV; neighbor++){
-//            if (neighbors.at(neighbor)==1 & !isVisited[neighbor]){
-//                Tree* curr = Tree::createTree(session,neighbor);
-//                tree->addChild(*curr);
-//                myqueue.push_back(neighbor);
-//            }
-//        }
-//    }
-//    return tree;
-//}
-
 //----------------clones for add child -------------
 Tree* CycleTree::clone() const{
     Tree* pclone = new CycleTree(*this);
@@ -154,7 +99,7 @@ Tree* RootTree:: clone() const{
     Tree* pclone = new RootTree(*this);
     return pclone;
 }
-//---------------------------------------------------
+//--------------Add Child-------------------------------------
 void Tree::addChild(const Tree &child) {
     Tree* toAdd = child.clone();
     children.push_back(toAdd);
@@ -164,7 +109,7 @@ void Tree::addChild(const Tree &child) {
 void Tree::addChild(Tree *child) {
     children.push_back(child);
 }
-
+//----------------Trace Tree----------------------------------
 int MaxRankTree::traceTree() {
     int output = getNode();
     int max = getChildren().size();
@@ -196,11 +141,31 @@ int CycleTree::traceTree(){
     return ans;
 }
 int RootTree::traceTree() {return getNode();}
-void Tree::clearpointers() {
-    if (&children != nullptr) {
-        for (auto child: children) {
-            delete child;
+
+//------------------Print-------------------------------
+
+void Tree::printLevel( int level){
+    if(level == 0){
+        cout<<getNode()<<ends;
+        return;
+    }
+    if(getChildren().empty())
+        return;
+    if(level>0){
+        for(int i=0;i<getChildren().size();i++){
+            getChildren()[i]->printLevel(level-1);
         }
-        children.clear();
+    }
 }
+
+void Tree:: printTree(){
+    for(int i=0;i<15;i++){
+        printLevel(i);
+        cout<<""<<endl;
+    }
+}
+
+void CycleTree::printTree() {
+    cout<<"cycles:"<<currCycle<<endl;
+    cout<<"root:"<<node<<endl;
 }
