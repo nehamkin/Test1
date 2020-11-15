@@ -50,7 +50,7 @@ Agent* ContactTracer::clone() const {Agent * agent = new ContactTracer(); return
 
 Virus::Virus(int nodeInd): nodeInd(nodeInd) {}
 string Virus::mytype() {return "Virus :(";}
-
+//-------------ACT-------------------------------------------------
 void Virus::act(Session &session) {
     if(!session.isRed(nodeInd)){        //make sure virus is active
         session.setRed(nodeInd);
@@ -62,9 +62,10 @@ void Virus::act(Session &session) {
        int neighbor = neighbors.at(i);
         if (!session.isYellow(neighbor)){
            session.setYellow(neighbor);
-           Virus virus(neighbor);
-           Agent* curr=&virus;                      //create a new virus
+           Virus *virus = new Virus(neighbor);
+           Agent* curr=virus;                      //create a new virus
            session.addAgent(*curr);                 // clones curr and stores clone on heap , curr never gets deleted
+           delete virus;
            infectedNeighbor = true;
        }
     }
@@ -77,7 +78,3 @@ void ContactTracer::act(Session &session) {
         session.detachVertex(toDetach);
     }
 }
-
-//void ContactTracer::print(){cout<<"contact"<<endl;}
-//void Virus::print() {cout<<"Virus:"<<nodeInd<<endl;}
-//void Agent::print() {cout<<"Agent"<<endl;}

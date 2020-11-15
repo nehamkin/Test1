@@ -21,12 +21,14 @@ enum TreeType{
 
 class Session{
 public:
-    Session(const std::string& path);
-    virtual ~Session();
-    Session(const Session &other);
-    Session& operator=(const Session &other);
-    Session(Session && other);
-    Session& operator=(Session &&other);
+    Session(const std::string& path);           //constructor
+//    -------RULE OF 5 -------------------------------------------
+    virtual ~Session();                         //destructor
+    Session(const Session &other);              //copy constructor
+    Session& operator=(const Session &other);   //copy assignment
+    Session(Session && other);                  //move constructor
+    Session& operator=(Session &&other);        //move assignment
+//    ------SIMULATE AND UNDER
     void simulate();
     bool condition();
     void addAgent(const Agent& agent);
