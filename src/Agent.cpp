@@ -37,6 +37,7 @@ Tree* BFS(int root,Session session) {
 
 Agent::Agent() {}
 Agent::Agent(const Agent &agent) {}
+Agent:: ~Agent(){};
 string Agent::mytype() {return "agent";}
 ContactTracer::ContactTracer() {}
 string ContactTracer:: mytype(){return "Contacttracer :D"; }

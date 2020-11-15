@@ -8,6 +8,7 @@ class Agent{
 public:
     Agent();
     Agent(const Agent &agent); // copy constructor
+    virtual ~Agent();
     virtual Agent* clone() const=0;
     virtual void act(Session& session)=0;
     virtual string mytype();
