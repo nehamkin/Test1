@@ -2,7 +2,7 @@
 // Created by spl211 on 06/11/2020.
 //
 
-#include "Graph.h"
+#include "Include/Graph.h"
 #include <queue>
 
 Graph::Graph(std::vector<std::vector<int>> matrix): edges(matrix) {}

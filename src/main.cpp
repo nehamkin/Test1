@@ -1,11 +1,11 @@
 #include <iostream>
 #include <fstream>
-#include "Session.h"
-#include "json.hpp"
-#include "Tree.h"
-#include "Agent.h"
+#include "Include/Session.h"
+#include "Include/json.hpp"
+#include "Include/Tree.h"
+#include "Include/Agent.h"
 #include <queue>
-#include "Graph.h"
+#include "Include/Graph.h"
 //Tree* BFS(int root,Session session) {
 //    Tree *tree = Tree::createTree(session, root);
 //    int numOfV = session.getGraph().numberOfVertices();
