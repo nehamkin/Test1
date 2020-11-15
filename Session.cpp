@@ -160,3 +160,19 @@ void Session::printAgents() {
 }
 void Session::printType() {if (treeType == MaxRank) cout<<"Max rank tree"<<endl; else if (treeType == Cycle) cout<<"Cycle tree"<<endl; else cout<<"root tree"<<endl ;}
 
+vector<int> Session::getInfected(){
+    vector<int> output;
+    for(int i = 0; i<red.size();i++){
+        if(isRed(i))
+            output.push_back(i);
+    }
+    return output;
+}
+
+void Session::output() {
+    json j;
+    j["infected"] = getInfected();
+    j["graph"] = g.getEdges();
+    ofstream o("output1.json");
+    o<<j<<endl;
+}

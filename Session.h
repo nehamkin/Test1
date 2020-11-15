@@ -47,6 +47,8 @@ public:
     void setYellow(int toChange);
     bool isInfectedQempty();
     void clear();
+    vector<int> getInfected();
+    void output();
 
 private:
     Graph g;
