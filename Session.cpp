@@ -86,8 +86,10 @@ Session& Session::operator=(Session &&other) {
         yellow = other.yellow;
         red = other.red;
         infectedQ = other.infectedQ;
-        agents = other.agents;
-        other.clear();
+        for (int i = 0; i< agentSize;i++){
+            agents.push_back(other.agents.at(i));
+            other.agents.at(i) = nullptr;
+        }
     }
     return *this;
 }
