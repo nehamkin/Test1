@@ -1,9 +1,9 @@
 //
 // Created by spl211 on 06/11/2020.
 //
-#include "Include/Graph.h"
-#include "Include/Tree.h"
-#include "Include/Session.h"
+#include "../Include/Graph.h"
+#include "../Include/Tree.h"
+#include "../Include/Session.h"
 #include <queue>
 using namespace std;
 

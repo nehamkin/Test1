@@ -1,9 +1,9 @@
 //
 // Created by spl211 on 06/11/2020.
 //
-#include "Include/Tree.h"
-#include "Include/Agent.h"
-#include "Include/Graph.h"
+#include "../Include/Tree.h"
+#include "../Include/Agent.h"
+#include "../Include/Graph.h"
 
 Tree* BFS(int root,Session session) {
     Tree *tree = Tree::createTree(session, root);
