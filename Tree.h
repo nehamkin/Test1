@@ -8,21 +8,23 @@ class Session;
 class Tree{
 public:
     Tree(int rootLabel);
-    virtual ~Tree();
-    Tree(const Tree& other);
-    Tree(Tree&& tree);
-    Tree& operator=(const Tree& tree);
-    Tree& operator=(Tree&& tree);
+    //    -----RULE OF 5--------------------------------------
+    virtual ~Tree();                    //destructor
+    Tree(const Tree& other);            //copy constructor
+    Tree& operator=(const Tree& tree);  //copy assignment
+    Tree(Tree&& tree);                  //move constructor
+    Tree& operator=(Tree&& tree);       //move assignment
+    void clearpointers();               //deletes all the resources **is used in rule of 5
+    //    ----Add Child---------------------------------------
     void addChild(const Tree& child);
     void addChild(Tree* child);
+//    -----Important Tree functions--------------------------------
     static Tree* createTree(const Session& session, int rootLabel);
     virtual int traceTree()=0;
+    virtual Tree* clone() const=0;
+//    -------Getters------------------------------------------
     int getNode() const{return node;}
     vector<Tree*> getChildren() const;
-    virtual Tree* clone() const=0;
-    void printTree();
-    void printLevel(int level);
-    void clearpointers();
 
 protected:
     int node;

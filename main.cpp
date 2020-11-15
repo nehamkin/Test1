@@ -45,24 +45,31 @@ int main(int argc, char** argv){
         return 0;
     }
     Session sess(argv[1]);
-      Virus v1(4);
-    Virus v2(v1);
-    Agent* a1 = &v1;
-    Agent *a2= &v2;
-    CycleTree *ct1=new CycleTree(3,5);
-    CycleTree ct2(*ct1);
-    ct1->printTree();
-    ct2.printTree();
-    Tree *t1= ct1;
-    Tree* t2=&ct2;
-    t1->printTree();
-    t2->printTree();
-    CycleTree ct3(10,12);
-    ct3.printTree();
-    delete ct1;
-    ct3 = ct2;
-    ct3 = CycleTree(100,1000);
-    ct3.printTree();
+    Session sess1(sess);
+    sess1.simulate();
+    Session sess2=sess;
+    Session sess3=Session(argv[1]);
+    sess=sess1;
+    sess=sess3;
+    sess.simulate();
+//      Virus v1(4);
+//    Virus v2(v1);
+//    Agent* a1 = &v1;
+//    Agent *a2= &v2;
+//    CycleTree *ct1=new CycleTree(3,5);
+//    CycleTree ct2(*ct1);
+//    ct1->printTree();
+//    ct2.printTree();
+//    Tree *t1= ct1;
+//    Tree* t2=&ct2;
+//    t1->printTree();
+//    t2->printTree();
+//    CycleTree ct3(10,12);
+//    ct3.printTree();
+//    delete ct1;
+//    ct3 = ct2;
+//    ct3 = CycleTree(100,1000);
+//    ct3.printTree();
 //    ct3 = &ct1;
 
 
@@ -70,10 +77,6 @@ int main(int argc, char** argv){
 //    a2->print();
 
 
-    Session sess1(sess);
-    sess.printGraph();
-    sess.simulate();
-    sess.output();
 
 
 

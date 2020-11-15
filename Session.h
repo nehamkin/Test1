@@ -38,6 +38,7 @@ public:
 // ------Getters----------------------------------------------------
     Graph getGraph()const;
     int getCycle() const;
+    TreeType getTreeType() const;
 // -------Virus functions---------------------------------------------
     bool isRed(int x) const;
     bool isYellow(int x) const;
@@ -46,7 +47,7 @@ public:
     bool isInfectedQempty();
     void clear();
     vector<int> getInfected();
-
+//-------------------------------------------------------------------
     void output(); //creates the json output
 //----Printers--------------------------------------------------------
     void printGraph();
@@ -58,11 +59,11 @@ private:
     TreeType treeType;
     std::vector<Agent*> agents;
     int cycleNum;
-    vector<bool> red; // sick vertices
+    vector<bool> red;   // sick vertices
     vector<bool> yellow; //infected vertices
 //    int agentCounter; // counts how many agents acted
-    int agentSize;// how many agents need to act
-    queue<int> infectedQ;
+    int agentSize;      // how many agents need to act
+    queue<int> infectedQ;//queue of infected vertices that contact tracer will act upon
 };
 
 #endif

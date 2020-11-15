@@ -111,24 +111,25 @@ void Tree::addChild(Tree *child) {
 }
 //----------------Trace Tree----------------------------------
 int MaxRankTree::traceTree() {
-    int output = getNode();
-    int max = getChildren().size();
-    Tree* t;
-    queue<Tree*> q;
+    int output = getNode(); // the number of the node with the most children
+    int max = getChildren().size(); // the most children a node has so far
+    Tree* t;  // the child that we will be working on
+    queue<Tree*> q; // queue so that i can enter nodes by level and from left to right
     q.push(this);
     while(!q.empty()){
-        t=q.front();
+        t=q.front(); // t is the child that we want to work on
         q.pop();
-        if(t->getChildren().size()>max){
+        if(t->getChildren().size()>max){ // if this tree has the most children then he is the node to return so far
             max=t->getChildren().size();
             output=t->getNode();
         }
-        for(int i=0; i<t->getChildren().size();i++){
+        for(int i=0; i<t->getChildren().size();i++){ //  adds the next level of children
             q.push(t->getChildren()[i]);
         }
     }
     return output;
 }
+
 int CycleTree::traceTree(){
     int ans = this->getNode();
     Tree* curr = this;
@@ -142,30 +143,6 @@ int CycleTree::traceTree(){
 }
 int RootTree::traceTree() {return getNode();}
 
-//------------------Print-------------------------------
 
-void Tree::printLevel( int level){
-    if(level == 0){
-        cout<<getNode()<<ends;
-        return;
-    }
-    if(getChildren().empty())
-        return;
-    if(level>0){
-        for(int i=0;i<getChildren().size();i++){
-            getChildren()[i]->printLevel(level-1);
-        }
-    }
-}
 
-void Tree:: printTree(){
-    for(int i=0;i<15;i++){
-        printLevel(i);
-        cout<<""<<endl;
-    }
-}
 
-void CycleTree::printTree() {
-    cout<<"cycles:"<<currCycle<<endl;
-    cout<<"root:"<<node<<endl;
-}
