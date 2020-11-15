@@ -28,29 +28,30 @@ public:
     Session& operator=(const Session &other);   //copy assignment
     Session(Session && other);                  //move constructor
     Session& operator=(Session &&other);        //move assignment
-//    ------SIMULATE AND UNDER
+//    ------Simulate and important functions-------------------------
     void simulate();
     bool condition();
     void addAgent(const Agent& agent);
-    void setGraph(const Graph& graph);
     void enqueueInfected(int);
     int dequeueInfected();
-    void detachVertex(int v);
-    TreeType getTreeType() const;
-    void printGraph();
-    void printAgents();
-    void printType();
+    void detachVertex(int v); // Detaches v from g
+// ------Getters----------------------------------------------------
     Graph getGraph()const;
     int getCycle() const;
+// -------Virus functions---------------------------------------------
     bool isRed(int x) const;
     bool isYellow(int x) const;
-    int getAgentSize() const;
     void setRed(int toChange);
     void setYellow(int toChange);
     bool isInfectedQempty();
     void clear();
     vector<int> getInfected();
-    void output();
+
+    void output(); //creates the json output
+//----Printers--------------------------------------------------------
+    void printGraph();
+    void printAgents();
+    void printType();
 
 private:
     Graph g;

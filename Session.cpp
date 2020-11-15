@@ -95,9 +95,7 @@ Session& Session::operator=(Session &&other) {
 }
 //----------------getters and setters -------------------
 Graph Session::getGraph() const {return g;}
-TreeType Session::getTreeType() const {return treeType;}
 int Session::getCycle() const {return cycleNum;}
-int Session::getAgentSize() const {return agentSize;}
 // --------------Red Yellow vector functions --------------
 bool Session:: isRed(int x) const {return red[x];}
 bool Session:: isYellow(int x) const {return yellow[x];}
