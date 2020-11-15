@@ -18,6 +18,8 @@ Session::Session(const std::string &path) {
         treeType = Root;
     else
         treeType = Cycle;
+
+    cycleNum=0;
 //    ---- Graph g ----
     vector<vector<int>> matrix = j["graph"];
     Graph graph(matrix);
@@ -90,6 +92,7 @@ Session& Session::operator=(Session &&other) {
             agents.push_back(other.agents.at(i));
             other.agents.at(i) = nullptr;
         }
+        other.agents.clear();
     }
     return *this;
 }
@@ -140,6 +143,7 @@ void Session::simulate() {
         for (int i = 0; i < agentSize; i++) {
             agents[i]->act(*this);
         }
+        cycleNum++;
         agentSize = agents.size();
     }
 }

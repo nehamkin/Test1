@@ -26,7 +26,7 @@ int tree_exp1(){
 
 int main(int argc, char** argv) {
     nlohmann::json j;
-    Session sess("/home/spl211/Desktop/Test1/config2.json");
+    Session sess("/home/spl211/Desktop/Test1/config4.json");
     sess.simulate();
     sess.output();
 }
