@@ -129,7 +129,7 @@ bool Session::condition() {
         bool firstRed= red[v.front()];
         bool firstNotYellow= !yellow[v.front()]; // if vertex is not yellow thus he is blue
         for(int x: v){
-            if(red[x]!=firstRed | !yellow[x]!=firstNotYellow){ // if there is a red vertex in a component
+            if((red[x]!=yellow[x])|(red[x]!=firstRed | !yellow[x]!=firstNotYellow)){ // if there is a red vertex in a component
                 return true;
             }
         }
