@@ -1,7 +1,6 @@
 #ifndef GRAPH_H_
 #define GRAPH_H_
 #include "Tree.h"
-//#include "Session.h"
 #include <vector>
 using namespace std;
 class Graph{

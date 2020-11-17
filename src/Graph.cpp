@@ -41,7 +41,7 @@ vector<vector<int>> Graph::connectedComponents() {
     for(int i=0; i<numberOfVertices();i++)
         visited.push_back(false);
     for(int i=0; i<numberOfVertices();i++){
-        vector<int>* component;
+        //vector<int>* component;
         if(!visited[i])
         {
             vector<int> component;
