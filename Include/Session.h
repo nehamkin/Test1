@@ -49,10 +49,6 @@ public:
     vector<int> getInfected();
 //-------------------------------------------------------------------
     void output(); //creates the json output
-//----Printers--------------------------------------------------------
-    void printGraph();
-    void printAgents();
-    void printType();
 
 private:
     Graph g;

@@ -120,7 +120,6 @@ void Session::addAgent(const Agent &agent) {
     Agent *ag= agent.clone();
     agents.push_back(ag);
 }
-
 void Session::detachVertex(int v) {
     g.detachVertex(v);
 }
@@ -138,7 +137,6 @@ bool Session::condition() {
     }
     return false;
 }
-
 void Session::simulate() {
     agentSize = agents.size();
     while (condition()) {
@@ -149,22 +147,6 @@ void Session::simulate() {
         agentSize = agents.size();
     }
 }
-//------------------Printers------------------------------------
-void Session::printGraph() {
-    const vector<vector<int>> matrix= g.getEdges();
-    for(unsigned int i=0;i<matrix.size();i++){
-        cout<<""<<endl;
-        for(unsigned int j=0;j<matrix.size();j++)
-            cout<<matrix[i][j]<<ends;}
-}
-void Session::printAgents() {
-    int i = 1 ;
-    for(auto elem:agents){
-    cout<<"agent number "<<i <<" is a "<<  elem->mytype() <<endl;
-    i++;}
-}
-void Session::printType() {if (treeType == MaxRank) cout<<"Max rank tree"<<endl; else if (treeType == Cycle) cout<<"Cycle tree"<<endl; else cout<<"root tree"<<endl ;}
-
 vector<int> Session::getInfected(){
     vector<int> output;
     for(unsigned int i = 0; i<red.size();i++){

@@ -2,22 +2,24 @@
 // Created by spl211 on 06/11/2020.
 //
 #include "../Include/Graph.h"
-#include "../Include/Tree.h"
 #include "../Include/Session.h"
 #include <queue>
 using namespace std;
 
 Tree::Tree(int rootLabel): node(rootLabel), children(){}
+
 Tree:: ~Tree(){
     clearpointers();
     children.clear();
 }
+
 Tree::Tree(const Tree& tree):node(tree.node), children(){ //looks good
     for (unsigned int i =0; i<tree.children.size(); i++){
         Tree* curr = tree.children.at(i)->clone();
         children.push_back(curr);
     }
 }
+
 Tree& Tree::operator=(const Tree& tree){
     if(this!=&tree){
         clearpointers();
@@ -29,12 +31,14 @@ Tree& Tree::operator=(const Tree& tree){
     }
     return *this;
 }
+
 Tree::Tree(Tree&& tree): node(tree.node), children(){ // looks good
     for (unsigned int i =0; i<tree.children.size(); i++){
         children.push_back(tree.children.at(i));
         tree.children.at(i) = nullptr;
     }
 }
+
 Tree & Tree::operator=(Tree &&tree) {
     if(this!=&tree) {
         clearpointers();
@@ -49,12 +53,11 @@ Tree & Tree::operator=(Tree &&tree) {
 }
 
 void Tree::clearpointers() {
-    if (&children != nullptr) {
-        for (auto child: children) {
-            delete child;
-        }
-        children.clear();
-    }
+     for (auto child: children) {
+         delete child;
+     }
+     children.clear();
+
 }
 
 vector<Tree*> Tree::getChildren() const {return children;}
@@ -84,7 +87,6 @@ Tree* Tree::createTree(const Session &session, int rootLabel) {
     return tree;
 
 }
-
 //----------------clones for add child -------------
 Tree* CycleTree::clone() const{
     Tree* pclone = new CycleTree(*this);
@@ -142,6 +144,7 @@ int CycleTree::traceTree(){
     }
     return ans;
 }
+
 int RootTree::traceTree() {return getNode();}
 
 

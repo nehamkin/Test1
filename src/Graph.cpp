@@ -25,7 +25,6 @@ void Graph::detachVertex(int v) {
         deleteEdge(v,i);
     }
 }
-
 void Graph::DFS(int v, vector<bool> *visited,vector<int> *component) { //the v
     (*visited)[v]=true;
     (*component).push_back(v);
@@ -34,7 +33,6 @@ void Graph::DFS(int v, vector<bool> *visited,vector<int> *component) { //the v
             DFS(i,visited,component);
     }
 }
-
 vector<vector<int>> Graph::connectedComponents() {
     vector<bool> visited;
     vector<vector<int>> output;

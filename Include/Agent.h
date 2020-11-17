@@ -11,27 +11,24 @@ public:
     virtual ~Agent();
     virtual Agent* clone() const=0;
     virtual void act(Session& session)=0;
-    virtual string mytype();
-//    virtual void print();
+
 };
 
 class ContactTracer: public Agent{
 public:
     ContactTracer();
-    string mytype();
     virtual Agent* clone() const;
     virtual void act(Session& session);
-//    virtual void print();
+
 };
 
 
 class Virus: public Agent{
 public:
     Virus(int nodeInd);
-    string mytype();
     virtual Agent* clone() const;
     virtual void act(Session& session);
-//    virtual void print();
+
 private:
     const int nodeInd;
 };

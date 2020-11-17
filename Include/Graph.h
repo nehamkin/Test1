@@ -16,7 +16,7 @@ public:
     vector<int> getNeighborsOf(int vertex);
     vector<vector<int>> getEdges() const;
     int numberOfVertices();
-    // no need for a destructor and operator= because it will be saved on the stack
+
 private:
     std::vector<std::vector<int>> edges;
 };

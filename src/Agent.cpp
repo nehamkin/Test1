@@ -38,19 +38,14 @@ Tree* BFS(int root,Session session) {
 Agent::Agent() {}
 Agent::Agent(const Agent &agent) {}
 Agent:: ~Agent(){};
-string Agent::mytype() {return "agent";}
 ContactTracer::ContactTracer() {}
-string ContactTracer:: mytype(){return "Contacttracer :D"; }
-
+Virus::Virus(int nodeInd): nodeInd(nodeInd) {}
 Agent* Virus::clone() const {
     Agent* agent = new Virus(nodeInd);
     return agent;
 }
-
 Agent* ContactTracer::clone() const {Agent * agent = new ContactTracer(); return agent;} // will never be used since there is no need to add a new CT to the agent list in session
 
-Virus::Virus(int nodeInd): nodeInd(nodeInd) {}
-string Virus::mytype() {return "Virus :(";}
 //-------------ACT-------------------------------------------------
 void Virus::act(Session &session) {
     if(!session.isRed(nodeInd)){        //make sure virus is active
