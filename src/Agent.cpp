@@ -3,7 +3,7 @@
 //
 #include "../Include/Tree.h"
 #include "../Include/Agent.h"
-#include "../Include/Graph.h"
+
 
 Tree* BFS(int root,Session session) {
     Tree *tree = Tree::createTree(session, root);
@@ -24,7 +24,7 @@ Tree* BFS(int root,Session session) {
         isVisited.at(currentNode) = true;
         vector<int> neighbors = session.getGraph().getEdges()[currentNode];
         for (int neighbor=0 ;neighbor< numOfV; neighbor++){
-            if (neighbors.at(neighbor)==1 & !isVisited.at(neighbor) & !inQueue.at(neighbor)){
+            if (((neighbors.at(neighbor)==1) & (!isVisited.at(neighbor))) & !inQueue.at(neighbor)){
                 Tree* curr2 = Tree::createTree(session,neighbor);
                 curr1->addChild(curr2);
                 myQueue.push(curr2);
@@ -59,7 +59,7 @@ void Virus::act(Session &session) {
     }
     vector<int> neighbors = session.getGraph().getNeighborsOf(nodeInd);
     bool infectedNeighbor = false;
-    for (int i = 0;i<neighbors.size() & !infectedNeighbor;i++ ){               //checks node's neighbors
+    for (unsigned int i = 0;(i<neighbors.size()) & (!infectedNeighbor);i++ ){               //checks node's neighbors
        int neighbor = neighbors.at(i);
         if (!session.isYellow(neighbor)){
            session.setYellow(neighbor);

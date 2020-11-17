@@ -3,7 +3,7 @@
 //
 
 #include "../Include/Graph.h"
-#include <queue>
+
 
 Graph::Graph(std::vector<std::vector<int>> matrix): edges(matrix) {}
 Graph::Graph(): edges() {}
@@ -14,14 +14,14 @@ void Graph::deleteEdge(int a, int b) {
 }
 vector<int> Graph::getNeighborsOf(int vertex) {
     vector<int> neighbors;
-    for(int i=0;i<edges.size();i++){
+    for(unsigned int i=0;i<edges.size();i++){
         if(edges[vertex][i]==1)
             neighbors.push_back(i);
     }
     return neighbors;
 }
 void Graph::detachVertex(int v) {
-    for(int i=0; i<edges.size(); i++){
+    for(unsigned int i=0; i<edges.size(); i++){
         deleteEdge(v,i);
     }
 }

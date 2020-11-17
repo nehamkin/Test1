@@ -61,7 +61,6 @@ private:
     int cycleNum;
     vector<bool> red;   // sick vertices
     vector<bool> yellow; //infected vertices
-//    int agentCounter; // counts how many agents acted
     int agentSize;      // how many agents need to act
     queue<int> infectedQ;//queue of infected vertices that contact tracer will act upon
 };

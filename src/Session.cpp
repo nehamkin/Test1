@@ -6,10 +6,11 @@
 #include "../Include/Agent.h"
 
 //------------constructor------------------
-Session::Session(const std::string &path) {
+Session::Session(const std::string &path):g(), treeType(), agents(), cycleNum(0),red(), yellow(), agentSize(), infectedQ() {
     ifstream i(path);
     json j;
-    j << i;
+   // j << i;
+    i>>j;
     //----Tree Type----
     string type = j["tree"];
     if (type == "M")
@@ -19,7 +20,7 @@ Session::Session(const std::string &path) {
     else
         treeType = Cycle;
 
-    cycleNum=0;
+
 //    ---- Graph g ----
     vector<vector<int>> matrix = j["graph"];
     Graph graph(matrix);
@@ -49,7 +50,7 @@ void Session::clear() {
     }
     agents.clear();
 }
-Session::Session(const Session &other): treeType(other.treeType),g(other.g), cycleNum(other.cycleNum), agentSize(other.agentSize),yellow(other.yellow), red(other.red), infectedQ(other.infectedQ){
+Session::Session(const Session &other):g(other.g), treeType(other.treeType), agents(), cycleNum(other.cycleNum),red(other.red), yellow(other.yellow), agentSize(other.agentSize), infectedQ(other.infectedQ){
     for (int i = 0; i<other.agentSize ;i++){
         Agent* curr = other.agents.at(i)->clone();
         agents.push_back(curr);
@@ -70,8 +71,9 @@ Session& Session::operator=(const Session &other){
             agents.push_back(curr);
         }
     }
+    return *this;
 }
-Session::Session(Session && other): treeType(other.treeType),g(other.g), cycleNum(other.cycleNum), agentSize(other.agentSize),yellow(other.yellow), red(other.red), infectedQ(other.infectedQ){
+Session::Session(Session && other): g(other.g), treeType(other.treeType), agents(), cycleNum(other.cycleNum),red(other.red), yellow(other.yellow), agentSize(other.agentSize), infectedQ(other.infectedQ){
     for (int i = 0; i< agentSize;i++){
         agents.push_back(other.agents.at(i));
         other.agents.at(i) = nullptr;
@@ -129,7 +131,7 @@ bool Session::condition() {
         bool firstRed= red[v.front()];
         bool firstNotYellow= !yellow[v.front()]; // if vertex is not yellow thus he is blue
         for(int x: v){
-            if((red[x]!=yellow[x])|(red[x]!=firstRed | !yellow[x]!=firstNotYellow)){ // if there is a red vertex in a component
+            if((red[x]!=yellow[x])|((red[x]!=firstRed) | (!yellow[x]!=firstNotYellow))){ // if there is a red vertex in a component
                 return true;
             }
         }
@@ -150,9 +152,9 @@ void Session::simulate() {
 //------------------Printers------------------------------------
 void Session::printGraph() {
     const vector<vector<int>> matrix= g.getEdges();
-    for(int i=0;i<matrix.size();i++){
+    for(unsigned int i=0;i<matrix.size();i++){
         cout<<""<<endl;
-        for(int j=0;j<matrix.size();j++)
+        for(unsigned int j=0;j<matrix.size();j++)
             cout<<matrix[i][j]<<ends;}
 }
 void Session::printAgents() {
@@ -165,7 +167,7 @@ void Session::printType() {if (treeType == MaxRank) cout<<"Max rank tree"<<endl;
 
 vector<int> Session::getInfected(){
     vector<int> output;
-    for(int i = 0; i<red.size();i++){
+    for(unsigned int i = 0; i<red.size();i++){
         if(isRed(i))
             output.push_back(i);
     }
@@ -176,6 +178,6 @@ void Session::output() {
     json j;
     j["infected"] = getInfected();
     j["graph"] = g.getEdges();
-    ofstream o("output1.json");
+    ofstream o("output.json");
     o<<j<<endl;
 }

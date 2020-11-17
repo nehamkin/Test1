@@ -12,25 +12,25 @@ Tree:: ~Tree(){
     clearpointers();
     children.clear();
 }
-Tree::Tree(const Tree& tree):node(tree.node){ //looks good
-    for (int i =0; i<tree.children.size(); i++){
+Tree::Tree(const Tree& tree):node(tree.node), children(){ //looks good
+    for (unsigned int i =0; i<tree.children.size(); i++){
         Tree* curr = tree.children.at(i)->clone();
         children.push_back(curr);
     }
 }
 Tree& Tree::operator=(const Tree& tree){
-    if(this!=&tree & &tree != nullptr){
+    if(this!=&tree){
         clearpointers();
         node = tree.node;
-        for (int i =0; i<tree.children.size(); i++){
+        for (unsigned int i =0; i<tree.children.size(); i++){
             Tree* curr = tree.children.at(i)->clone();
             children.push_back(curr);
         }
     }
     return *this;
 }
-Tree::Tree(Tree&& tree): node(tree.node){ // looks good
-    for (int i =0; i<tree.children.size(); i++){
+Tree::Tree(Tree&& tree): node(tree.node), children(){ // looks good
+    for (unsigned int i =0; i<tree.children.size(); i++){
         children.push_back(tree.children.at(i));
         tree.children.at(i) = nullptr;
     }
@@ -39,7 +39,7 @@ Tree & Tree::operator=(Tree &&tree) {
     if(this!=&tree) {
         clearpointers();
         node = tree.node;
-        for (int i = 0; i < tree.children.size(); i++) {
+        for (unsigned int i = 0; i < tree.children.size(); i++) {
             children.push_back(tree.children.at(i));
             tree.children.at(i) = nullptr;
         }
@@ -113,7 +113,7 @@ void Tree::addChild(Tree *child) {
 //----------------Trace Tree----------------------------------
 int MaxRankTree::traceTree() {
     int output = getNode(); // the number of the node with the most children
-    int max = getChildren().size(); // the most children a node has so far
+    unsigned int max = getChildren().size(); // the most children a node has so far
     Tree* t;  // the child that we will be working on
     queue<Tree*> q; // queue so that i can enter nodes by level and from left to right
     q.push(this);
@@ -124,7 +124,7 @@ int MaxRankTree::traceTree() {
             max=t->getChildren().size();
             output=t->getNode();
         }
-        for(int i=0; i<t->getChildren().size();i++){ //  adds the next level of children
+        for(unsigned int i=0; i<t->getChildren().size();i++){ //  adds the next level of children
             q.push(t->getChildren()[i]);
         }
     }
@@ -134,7 +134,7 @@ int MaxRankTree::traceTree() {
 int CycleTree::traceTree(){
     int ans = this->getNode();
     Tree* curr = this;
-    for(int counter = 0 ; counter<currCycle & curr!=0; counter++) {
+    for(int counter = 0 ; (counter<currCycle) & (curr!=0); counter++) {
         if (curr->getChildren().size()!= 0){
             curr = curr->getChildren().at(0);
             ans = curr->getNode();
